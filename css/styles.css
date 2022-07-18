@@ -1,0 +1,180 @@
+.notransition > div.progress-bar {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.modal__title {
+  margin: 0 2rem 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.modal__content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal__action {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* flex-shrink: 0; */
+  /* padding: 1rem 0 0; */
+}
+.modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.section-header {
+  margin-left: 1rem;
+}
+
+.i-header {
+  text-align: center;
+}
+.i-section {
+  text-align: left;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background-color: #f5f5f5;
+  color: #222222;
+  border-radius: 1rem 1rem 1rem 1rem;
+}
+
+tr.mydisabled:hover {
+  cursor: default;
+}
+
+tr.mydisabled {
+  cursor: inherit;
+  background-color: #84878a;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.selected {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.header-row {
+  background-color: #4b7b30;
+  cursor: default !important;
+}
+
+.info-tr:hover {
+  cursor: default !important;
+}
+.tooltip.b-tooltip {
+  opacity: 1 !important;
+}
+
+.tooltip-inner {
+  border: 1px solid white;
+}
+
+.tooltip .tooltip-inner {
+  max-width: 600px !important;
+  width: 350px !important;
+  background-color: #333c4a;
+  white-space: pre-line;
+}
+
+.nav-link:hover {
+  color: white;
+}
+.nav-link {
+  color: white;
+}
+:root {
+  /* Popper stuff */
+  --popper-theme-background-color: #333333;
+  --popper-theme-background-color-hover: #333333;
+  --popper-theme-text-color: #ffffff;
+  --popper-theme-border-width: 0px;
+  --popper-theme-border-style: solid;
+  --popper-theme-border-radius: 6px;
+  --popper-theme-padding: 32px;
+  --popper-theme-box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.25);
+}
+
+body {
+  margin: 0 0 0 0;
+  background-color: #232c2a;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* section for input, aka collection, exploration, etc */
+.i-box {
+  padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  min-width: 16rem;
+  flex-direction: column;
+  gap: 1px;
+}
+.i-skill {
+  min-width: 3rem;
+  text-align: left;
+}
+.i-name {
+  min-width: 8rem;
+  text-align: left;
+}
+.i-actions {
+  min-width: 4rem;
+  text-align: left;
+}
+.i-title {
+  text-align: center;
+}
+.i-header {
+  font-weight: bold;
+  text-align: left;
+}
+
+.column-flex {
+  display: flex;
+  flex-direction: column;
+}
+.row-flex {
+  display: flex;
+  flex-direction: row;
+}
+.between-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.around-flex {
+  display: flex;
+  justify-content: space-around;
+}
