@@ -23,7 +23,6 @@ module.exports = (env = envDefaults) => ({
 
   output: {
     path: dist_folder,
-    publicPath: "/dist/",
   },
 
   resolve: {
