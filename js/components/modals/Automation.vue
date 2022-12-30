@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <template>
-  <vue-final-modal
-    v-model="is_open"
-    classes="modal-container"
-    content-class="modal-content"
-    name="automation"
-    :esc-to-close="true"
-  >
-    <button class="modal__close" @click="is_open = false">X</button>
-    <span class="modal__title">Automation</span>
-    <div class="modal__content">
-      <map v-if="false" :datas="data" />
-      <div class="floor_listing_container">
-        <button
-          v-for="(floor, index) in seen_floors"
-          :key="floor.name"
-          class="floor_chooser"
-          @click="chosen_floor_index = index"
-        >
-          {{ index + 1 }}
-        </button>
-      </div>
-      <AutomationsBox :categories="categories" />
+  <MyModal name="automation" title="Automation">
+    <map v-if="false" :datas="data" />
+    <div class="floor_listing_container">
+      <button
+        v-for="(floor, index) in seen_floors"
+        :key="floor.name"
+        class="floor_chooser"
+        @click="chosen_floor_index = index"
+      >
+        {{ index + 1 }}
+      </button>
     </div>
-  </vue-final-modal>
+    <AutomationsBox :categories="categories" />
+  </MyModal>
 </template>
 
 <script setup lang="ts">
@@ -31,6 +21,7 @@ import { ref } from "vue"
 
 import AutomationsBox from "@c/modals/AutomationsBox.vue"
 import Map from "@c/modals/Map.vue"
+import MyModal from "./MyModal.vue"
 
 import { computed } from "vue"
 import { useStore } from "@store"
@@ -38,37 +29,28 @@ let store = useStore()
 let wasm = computed(() => store.state.wasm)
 let world = computed(() => store.state.world)
 
-let seen_floors = computed(() =>
-  world.value.floors.filter((floor) => {
-    return floor.has_seen
-  })
-)
+let has_seen = (a) => a.has_seen
+let seen_floors = computed(() => world.value.floors.filter(has_seen))
 
-let is_open = ref(false)
 let chosen_floor_index = ref(store.getters.current_floor.floor_index)
 let chosen_floor = computed(() => store.state.world.floors[chosen_floor_index.value])
 
 var data = computed(() => [wasm.value.get_map_for_floor(store.getters.current_floor.name)])
+
 let categories: any = computed(() => [
   {
     name: "Collection",
-    actions: chosen_floor.value.collections.filter((a) => {
-      return a.has_seen
-    }),
+    actions: chosen_floor.value.collections.filter(has_seen),
     toggle: wasm.value.toggle_priority_collection,
   },
   {
     name: "Crafting",
-    actions: chosen_floor.value.craftings.filter((a) => {
-      return a.has_seen
-    }),
+    actions: chosen_floor.value.craftings.filter(has_seen),
     toggle: wasm.value.toggle_priority_crafting,
   },
   {
     name: "Exploration",
-    actions: chosen_floor.value.explorations.filter((a) => {
-      return a.has_seen
-    }),
+    actions: chosen_floor.value.explorations.filter(has_seen),
     toggle: wasm.value.toggle_priority_exploration,
   },
 ])

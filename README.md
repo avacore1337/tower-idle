@@ -8,6 +8,7 @@ log in
 set up
 
 ## Rust
+
 The setup is based on [this tutorial](https://rustwasm.github.io/docs/wasm-pack/prerequisites/index.html), but an excerp follows below.
 
 Install rust and then wasm-pack:
@@ -17,6 +18,7 @@ curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 ```
 
 ## Nvm
+
 install [nvm](https://github.com/nvm-sh/nvm):
 
 ```bash

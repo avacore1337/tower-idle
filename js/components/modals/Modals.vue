@@ -2,23 +2,15 @@
 <template>
   <div>
     <DeathModal />
-    <vue-final-modal
-      v-model="is_open"
-      classes="modal-container"
-      content-class="modal-content"
+    <MyModal
       name="settings"
-      :esc-to-close="true"
+      title="Settings"
       @closed="addEscapeListener"
       @opened="removeEscapeListener"
     >
-      <button class="modal__close" @click="is_open = false">X</button>
-      <span class="modal__title">Settings</span>
-      <div class="modal__content">
-        <Settings />
-      </div>
-      <div class="modal__action"></div>
-    </vue-final-modal>
-    
+      <Settings />
+    </MyModal>
+
     <History />
     <Automation />
     <GeneralSettings />
@@ -34,6 +26,7 @@ import History from "@c/modals/History.vue"
 import Automation from "@c/modals/Automation.vue"
 import DeathModal from "@c/modals/DeathModal.vue"
 import GeneralSettings from "@c/modals/GeneralSettings.vue"
+import MyModal from "./MyModal.vue"
 let store = useStore()
 let is_open = ref(false)
 watch(is_open, () => store.commit("update_history"))
@@ -57,7 +50,6 @@ function handleEscape(event) {
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -79,5 +71,4 @@ function handleEscape(event) {
   min-width: 40rem;
   /* min-height: 30rem; */
 }
-
 </style>

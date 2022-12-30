@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <template>
-  <vue-final-modal
-    v-model="is_open"
-    classes="modal-container"
-    content-class="modal-content"
-    name="history"
-    :esc-to-close="true"
-  >
-    <button class="modal__close" @click="is_open = false">X</button>
-    <span class="modal__title">History</span>
-    <div class="modal__content">
-      This is where I display history data
+  <MyModal name="history" title="History">
+    This is where I display history data
 
-      <EChart :datas="datas" />
-      <p v-for="i in 2" :key="i">
-        Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.
-      </p>
-    </div>
-  </vue-final-modal>
+    <EChart :datas="datas" />
+    <p v-for="i in 2" :key="i">
+      Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.
+    </p>
+  </MyModal>
 </template>
 
 <script setup lang="ts">
@@ -26,6 +16,7 @@ import EChart from "@c/modals/EChart.vue"
 import { computed } from "vue"
 import { useStore } from "@store"
 import { SkillTypes } from "@p/index"
+import MyModal from "./MyModal.vue"
 
 let store = useStore()
 /* let wasm = computed(() => store.state.wasm) */

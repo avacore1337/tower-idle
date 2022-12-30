@@ -18,8 +18,19 @@ let formatedTime = computed(() => {
     return null
   }
   let sec = num % 60
-  let min = Math.floor(num / 60)
+  let min = Math.floor(num / 60) % 60
+  let hour = Math.floor(num / 60 / 60)
 
-  return min.toString().padStart(2, "0") + ":" + sec.toString().padStart(2, "0")
+  if (hour === 0) {
+    return min.toString().padStart(2, "0") + ":" + sec.toString().padStart(2, "0")
+  } else {
+    return (
+      hour.toString().padStart(2, "0") +
+      ":" +
+      min.toString().padStart(2, "0") +
+      ":" +
+      sec.toString().padStart(2, "0")
+    )
+  }
 })
 </script>
