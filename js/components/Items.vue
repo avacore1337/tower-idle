@@ -32,6 +32,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import { useStore } from "@store"
+import { ItemTypes } from "@p/index"
 
 /* <button @click.prevent="enqueue_item(item.name)">enqueue</button> */
 let store = useStore()
@@ -43,7 +44,7 @@ let items = computed(() =>
 )
 
 let wasm = computed(() => store.state.wasm)
-function use_item(name: string) {
+function use_item(name: ItemTypes) {
   wasm.value.use_item(name)
   store.commit("update_dynamic_data")
 }

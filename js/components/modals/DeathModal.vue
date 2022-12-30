@@ -36,18 +36,21 @@ let wasm = computed(() => store.state.wasm)
 let history = computed(() => store.state.history)
 let icons = computed(() => store.state.world.icons)
 let floors = computed(() => store.state.world.floors)
+let is_dead = computed(() => store.state.world.status.is_dead)
+let is_open = ref(false)
 
 function get_priority_icon(item: any): Icon {
   return icons.value["Priority" + item.priority.toString()]
 }
 
-let is_open = computed(() => store.state.world.status.is_dead)
-
 let relevant_skills = computed(() =>
   history.value.current_round.skills.filter((skill) => skill.is_visible)
 )
 
-watch(is_open, () => store.commit("update_history"))
+watch(is_dead, () => {
+  store.commit("update_history")
+  is_open.value = store.state.world.status.is_dead
+})
 
 let categories: any = computed(() => [
   {

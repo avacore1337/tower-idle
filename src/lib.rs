@@ -126,6 +126,12 @@ pub fn lower_action_count(index: u32) {
 }
 
 #[wasm_bindgen]
+pub fn clear_all_actions() {
+    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
+    game.action_queue.clear();
+}
+
+#[wasm_bindgen]
 pub fn clear_action_count() {
     info!("Rust clear action count");
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();

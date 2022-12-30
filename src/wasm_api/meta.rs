@@ -35,6 +35,11 @@ use wasm_bindgen::prelude::*;
 // }
 
 #[wasm_bindgen]
+pub fn is_debug() -> bool {
+    cfg!(debug_assertions)
+}
+
+#[wasm_bindgen]
 pub fn hard_reset() {
     let mut game = GLOBAL_DATA.lock().unwrap();
     game.hard_reset();

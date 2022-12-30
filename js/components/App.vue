@@ -16,9 +16,9 @@ import { computed, ref, onMounted } from "vue"
 import { useStore } from "@store"
 import { $vfm } from "vue-final-modal"
 
-let enable_debug = true
 let store = useStore()
 let wasm = computed(() => store.state.wasm)
+let enable_debug = wasm.value.is_debug()
 let loaded = ref(false)
 
 onMounted(() => {

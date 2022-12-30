@@ -14,7 +14,7 @@
         />
       </div>
       <div v-if="!no_actions" class="actions_list">
-        <div v-for="(action, index) in actions" :key="action.name" class="action-box">
+        <div v-for="(action, index) in actions" :key="action.action_key" class="action-box">
           <div class="row-flex order-width">
             <span class="number-width"> {{ index + 1 }} </span>
             <my-icon :icon="icons[action.skill_icon]" />
