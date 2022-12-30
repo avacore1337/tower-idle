@@ -109,12 +109,13 @@ export const createMyStore = function (wasm: Wasm): Store<State> {
 
 function internal_update_dynamic_data(state: State): void {
   state.user_settings = state.wasm.get_user_settings()
+  const new_queue = state.wasm.get_action_queue()
+  const new_state = state.wasm.get_state()
   const messages = state.wasm.get_new_texts()
   if (messages.length != 0) {
     state.messages.push(...messages)
   }
-  recurse_update(state.world, state.wasm.get_state())
-  const new_queue = state.wasm.get_action_queue()
+  recurse_update(state.world, new_state)
   if (state.action_queue.length != new_queue.length) {
     state.action_queue = new_queue
   } else {

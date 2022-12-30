@@ -1,4 +1,6 @@
 #![cfg(target_arch = "wasm32")]
+#![allow(dead_code)]
+#![allow(unused_imports)]
 
 use all_asserts::{assert_ge, assert_le};
 use tower::do_rebirth_internal;

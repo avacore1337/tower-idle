@@ -35,6 +35,9 @@ pub fn engine_run(game: &mut Game) {
     if game.state.status.is_dead {
         return;
     }
+    if game.state.status.waiting && game.action_queue.is_empty() {
+        return;
+    }
     let run_count = game.meta_data.handle_run_count();
     for _ in 0..run_count {
         pre_action(game);

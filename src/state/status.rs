@@ -33,7 +33,7 @@ impl Status {
             tick: 0,
             is_dead: false,
             reincarnation: 0,
-            waiting: true,
+            waiting: false,
         }
     }
 
