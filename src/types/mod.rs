@@ -59,7 +59,7 @@ pub enum ItemTypes {
     Stick,
     Poison,
     Log,
-    TraderCollect,
+    Fur,
 }
 
 #[wasm_bindgen]
@@ -144,7 +144,7 @@ impl From<F2Collects> for ItemTypes {
             F2Collects::Poison => ItemTypes::Poison,
             F2Collects::Flint => ItemTypes::Flint,
             F2Collects::Log => ItemTypes::Log,
-            F2Collects::TraderCollect => ItemTypes::TraderCollect,
+            F2Collects::Fur => ItemTypes::Fur,
             _ => panic!(),
         }
     }

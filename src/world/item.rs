@@ -66,10 +66,10 @@ pub fn translate_item(item: ItemTypes) -> WItem {
             description: "A large log",
             can_use: false,
         },
-        ItemTypes::TraderCollect => WItem {
+        ItemTypes::Fur => WItem {
             name: item,
-            display_name: "TraderCollect",
-            description: "TODO",
+            display_name: "Fur",
+            description: "Valuable goods",
             can_use: false,
         },
     }

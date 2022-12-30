@@ -251,7 +251,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 display_name: "BuyKey",
                 description: "TODO",
                 materials: vec![WMaterial {
-                    item: ItemTypes::TraderCollect,
+                    item: ItemTypes::Fur,
                     amount: 10,
                 }],
                 segments_needed: 1,

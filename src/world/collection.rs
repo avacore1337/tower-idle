@@ -217,20 +217,20 @@ pub fn get_second_floor_collections() -> Vec<WCollection> {
                 display_name: "Log",
                 description: "",
                 skill: SkillTypes::Woodcutting,
-                required_xp: 20.0,
+                required_xp: 80.0,
                 icon: IconType::Woodcutting.into(),
                 collect: Collect::Item(collection_type.into()),
                 base_priority: BasePriority::Material,
                 max_completions: None,
                 automate_limit: 40,
             },
-            F2Collects::TraderCollect => WCollection {
+            F2Collects::Fur => WCollection {
                 name: wrapped_type,
-                display_name: "TODO",
+                display_name: "Fur",
                 description: "",
-                skill: SkillTypes::Woodcutting,
-                required_xp: 20.0,
-                icon: IconType::Woodcutting.into(),
+                skill: SkillTypes::Hunting,
+                required_xp: 60.0,
+                icon: IconType::Hunting.into(),
                 collect: Collect::Item(collection_type.into()),
                 base_priority: BasePriority::Material,
                 max_completions: None,
@@ -309,7 +309,7 @@ pub fn should_be_visible_collection(collection_type: AllCollects, game: &Game) -
                     && !has_explored(F2Explors::DownWithTrees.into(), game)
             }
             F2Collects::Log => has_explored(F2Explors::Clearing.into(), game),
-            F2Collects::TraderCollect => has_explored(F2Explors::Argue.into(), game),
+            F2Collects::Fur => has_explored(F2Explors::Argue.into(), game),
         },
         AllCollects::Third(Third) => match Third {
             F3Collects::Test => false,

@@ -28,7 +28,7 @@ pub enum F2Collects {
     Flint,
     Log,
     Poison,
-    TraderCollect,
+    Fur,
 }
 
 #[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
