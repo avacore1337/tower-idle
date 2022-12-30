@@ -22,6 +22,7 @@ pub enum KeyValues {
     Cooking,
     Hunting,
     Fighting,
+    Conversation,
 }
 
 impl From<SkillTypes> for KeyValues {
@@ -37,6 +38,7 @@ impl From<SkillTypes> for KeyValues {
             SkillTypes::Cooking => KeyValues::Cooking,
             SkillTypes::Hunting => KeyValues::Hunting,
             SkillTypes::Fighting => KeyValues::Fighting,
+            SkillTypes::Conversation => KeyValues::Conversation,
         }
     }
 }

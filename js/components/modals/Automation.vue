@@ -10,7 +10,7 @@
     <button class="modal__close" @click="is_open = false">X</button>
     <span class="modal__title">Automation</span>
     <div class="modal__content">
-      <Map :datas="data" />
+      <map v-if="false" :datas="data" />
       <div class="floor_listing_container">
         <button
           v-for="(floor, index) in seen_floors"

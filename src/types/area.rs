@@ -40,6 +40,15 @@ pub enum F2Areas {
     RemoveDebris,
     DownWithTrees,
     BalanceAlong,
+    HitTheLever,
+    Clearing,
+    BridgeGap,
+    MeetTheTrader,
+    KillTrader,
+    Negotiate,
+    Argue,
+    Haggle,
+    UnlockStairs,
 }
 
 #[derive(

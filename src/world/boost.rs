@@ -29,14 +29,17 @@ impl WBoost {
             BoostTypes::Axe => {
                 inter.add_multiplier(KeyValues::Woodcutting, 1.5, self.display_name);
             }
-            BoostTypes::BetterAxe => {
-                inter.add_multiplier(KeyValues::Woodcutting, 1.5, self.display_name);
+            BoostTypes::Altar => {
+                inter.add_multiplier(KeyValues::HealthDrain, 0.5, self.display_name);
             }
             BoostTypes::Spear => {
                 inter.add_multiplier(KeyValues::Fighting, 1.5, self.display_name);
             }
-            BoostTypes::Altar => {
-                inter.add_multiplier(KeyValues::HealthDrain, 0.5, self.display_name);
+            BoostTypes::PoisonTippedSpear => {
+                inter.add_multiplier(KeyValues::Fighting, 1.5, self.display_name);
+            }
+            BoostTypes::BetterAxe => {
+                inter.add_multiplier(KeyValues::Woodcutting, 1.5, self.display_name);
             }
         }
     }
@@ -48,20 +51,25 @@ pub fn translate_boost(boost: BoostTypes) -> WBoost {
             description: "Boosts Woodcutting",
             display_name: "Simple Axe",
         },
+        BoostTypes::Altar => WBoost {
+            name: boost,
+            description: "An Altar",
+            display_name: "Halves Mana loss",
+        },
         BoostTypes::Spear => WBoost {
             name: boost,
             description: "Spear",
+            display_name: "Boosts Fighting",
+        },
+        BoostTypes::PoisonTippedSpear => WBoost {
+            name: boost,
+            description: "Poison Tipped Spear",
             display_name: "Boosts Fighting",
         },
         BoostTypes::BetterAxe => WBoost {
             name: boost,
             description: "Boosts Woodcutting even more",
             display_name: "A sharp flint Axe",
-        },
-        BoostTypes::Altar => WBoost {
-            name: boost,
-            description: "An Altar",
-            display_name: "Halves Mana loss",
         },
     }
 }

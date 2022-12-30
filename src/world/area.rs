@@ -134,7 +134,43 @@ pub fn get_second_floor_areas() -> Vec<WArea> {
             },
             F2Areas::BalanceAlong => WArea {
                 name: wrapped_type,
-                new_explorations: vec![E2::BalanceAlong.into()],
+                new_explorations: vec![E2::HitTheLever.into()],
+            },
+            F2Areas::HitTheLever => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::Clearing.into()],
+            },
+            F2Areas::Clearing => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::BridgeGap.into()],
+            },
+            F2Areas::BridgeGap => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::MeetTheTrader.into()],
+            },
+            F2Areas::MeetTheTrader => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::KillTrader.into(), E2::Negotiate.into()],
+            },
+            F2Areas::KillTrader => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::UnlockStairs.into()],
+            },
+            F2Areas::Negotiate => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::Argue.into()],
+            },
+            F2Areas::Argue => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::Haggle.into()],
+            },
+            F2Areas::Haggle => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::UnlockStairs.into()],
+            },
+            F2Areas::UnlockStairs => WArea {
+                name: wrapped_type,
+                new_explorations: vec![E2::Stairs2.into()],
             },
         };
         areas.push(area);

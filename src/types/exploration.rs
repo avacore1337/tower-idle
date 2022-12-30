@@ -43,6 +43,16 @@ pub enum F2Explors {
     RemoveDebris,
     DownWithTrees,
     BalanceAlong,
+    HitTheLever,
+    Clearing,
+    BridgeGap,
+    MeetTheTrader,
+    KillTrader,
+    Negotiate,
+    Argue,
+    Haggle,
+    UnlockStairs,
+    Stairs2,
 }
 
 #[derive(

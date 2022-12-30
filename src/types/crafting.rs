@@ -30,9 +30,9 @@ pub enum F1Crafts {
 pub enum F2Crafts {
     #[default]
     Spear,
-    // PoisonTippedSpear,
+    PoisonTippedSpear,
     BetterAxe,
-    // Bridge,
+    Bridge,
 }
 
 #[derive(

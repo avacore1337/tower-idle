@@ -35,6 +35,7 @@ pub enum SkillTypes {
     Fishing,
     Cooking,
     Hunting,
+    Conversation,
 }
 
 #[wasm_bindgen]
@@ -44,7 +45,7 @@ pub enum BoostTypes {
     BetterAxe,
     Altar,
     Spear,
-    // PoisonTippedSpear,
+    PoisonTippedSpear,
 }
 
 #[wasm_bindgen]
@@ -56,6 +57,9 @@ pub enum ItemTypes {
     Crystal,
     Flint,
     Stick,
+    Poison,
+    Log,
+    TraderCollect,
 }
 
 #[wasm_bindgen]
@@ -137,7 +141,10 @@ impl From<F2Collects> for ItemTypes {
     fn from(collection: F2Collects) -> Self {
         match collection {
             F2Collects::Stick => ItemTypes::Stick,
+            F2Collects::Poison => ItemTypes::Poison,
             F2Collects::Flint => ItemTypes::Flint,
+            F2Collects::Log => ItemTypes::Log,
+            F2Collects::TraderCollect => ItemTypes::TraderCollect,
             _ => panic!(),
         }
     }

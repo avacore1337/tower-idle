@@ -96,6 +96,12 @@ pub fn translate_skill(skill: SkillTypes) -> WSkill {
             icon: IconType::Fighting.into(),
             xp_req_modifier: 1.0,
         },
+        SkillTypes::Conversation => WSkill {
+            name: skill,
+            description: "How good you are at smoothtalking",
+            icon: IconType::Conversation.into(),
+            xp_req_modifier: 1.0,
+        },
     }
 }
 

@@ -8,9 +8,9 @@ use tsify::Tsify;
 #[derive(Tsify, Serialize, Clone)]
 pub struct WItem {
     pub name: ItemTypes,
+    pub display_name: &'static str,
     pub description: &'static str,
     // pub effect_description: &'static str,
-    pub display_name: &'static str,
     pub can_use: bool,
     // pub xp_req_modifier: f64,
     // pub icon: Icon,
@@ -20,38 +20,56 @@ pub fn translate_item(item: ItemTypes) -> WItem {
     match item {
         ItemTypes::MetalScrap => WItem {
             name: item,
-            description: "Mostly some rusty nails",
             display_name: "Metal piece",
+            description: "Mostly some rusty nails",
             can_use: false,
         },
         ItemTypes::Stone => WItem {
             name: item,
-            description: "A piece of stone",
             display_name: "Stone",
+            description: "A piece of stone",
             can_use: false,
         },
         ItemTypes::Wood => WItem {
             name: item,
-            description: "Wood, useful for making things",
             display_name: "Wood",
+            description: "Wood, useful for making things",
             can_use: false,
         },
         ItemTypes::Crystal => WItem {
             name: item,
-            description: "A Magical crystal",
             display_name: "Crystal",
+            description: "A Magical crystal",
             can_use: false,
         },
         ItemTypes::Flint => WItem {
             name: item,
-            description: "A sharp piece of flint",
             display_name: "Flint",
+            description: "A sharp piece of flint",
             can_use: false,
         },
         ItemTypes::Stick => WItem {
             name: item,
-            description: "A stick, with this you can't break any bones",
             display_name: "Stick",
+            description: "A stick, with this you can't break any bones",
+            can_use: false,
+        },
+        ItemTypes::Poison => WItem {
+            name: item,
+            display_name: "Poison",
+            description: "A deadly poison",
+            can_use: false,
+        },
+        ItemTypes::Log => WItem {
+            name: item,
+            display_name: "log",
+            description: "A large log",
+            can_use: false,
+        },
+        ItemTypes::TraderCollect => WItem {
+            name: item,
+            display_name: "TraderCollect",
+            description: "TODO",
             can_use: false,
         },
     }

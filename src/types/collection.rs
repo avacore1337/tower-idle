@@ -30,7 +30,9 @@ pub enum F2Collects {
     ExtractCrystal,
     HuntRabbits,
     Flint,
-    // Log,
+    Log,
+    Poison,
+    TraderCollect,
 }
 
 #[derive(

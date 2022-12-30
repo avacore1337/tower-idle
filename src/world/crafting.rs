@@ -42,7 +42,12 @@ impl WCrafting {
                     game.state.get_mut_boost(BoostTypes::BetterAxe).unlocked = true
                 }
                 F2Crafts::Spear => game.state.get_mut_boost(BoostTypes::Spear).unlocked = true,
-                // _ => {}
+                F2Crafts::PoisonTippedSpear => {
+                    game.state
+                        .get_mut_boost(BoostTypes::PoisonTippedSpear)
+                        .unlocked = true
+                }
+                F2Crafts::Bridge => {} // _ => {}
             },
             AllCrafts::Third(Third) => match Third {
                 // F3Crafts::Test => {}
@@ -195,7 +200,22 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 }],
                 segments_needed: 10,
                 skill: SkillTypes::Crafting,
-                required_xp: 12.0,
+                required_xp: 200.0,
+                icon: IconType::Crafting.into(),
+                repeatable: false,
+                automate_limit: 4,
+            },
+            F2Crafts::PoisonTippedSpear => WCrafting {
+                name: wrapped_type,
+                display_name: "PoisonTippedSpear",
+                description: "TODO",
+                materials: vec![WMaterial {
+                    item: ItemTypes::Poison,
+                    amount: 1,
+                }],
+                segments_needed: 10,
+                skill: SkillTypes::Crafting,
+                required_xp: 900.0,
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
@@ -206,6 +226,21 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 description: "TODO",
                 materials: vec![WMaterial {
                     item: ItemTypes::Flint,
+                    amount: 1,
+                }],
+                segments_needed: 10,
+                skill: SkillTypes::Crafting,
+                required_xp: 12.0,
+                icon: IconType::Crafting.into(),
+                repeatable: false,
+                automate_limit: 4,
+            },
+            F2Crafts::Bridge => WCrafting {
+                name: wrapped_type,
+                display_name: "Bridge",
+                description: "TODO",
+                materials: vec![WMaterial {
+                    item: ItemTypes::Log,
                     amount: 1,
                 }],
                 segments_needed: 10,
@@ -273,7 +308,9 @@ pub fn should_be_visible_crafting(crafting_type: AllCrafts, game: &Game) -> bool
         },
         AllCrafts::Second(Second) => match Second {
             F2Crafts::Spear => has_explored(F2Explors::ExploreHallway.into(), game),
+            F2Crafts::PoisonTippedSpear => has_explored(F2Explors::Laboratory.into(), game),
             F2Crafts::BetterAxe => has_explored(F2Explors::RemoveDebris.into(), game),
+            F2Crafts::Bridge => has_explored(F2Explors::Clearing.into(), game),
         },
         AllCrafts::Third(Third) => match Third {
             F3Crafts::Test => false,

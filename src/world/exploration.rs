@@ -31,6 +31,9 @@ impl WExploration {
             AllExplors::First(F1Explors::Stairs) => {
                 game.state.set_current_floor(FloorTypes::Second);
             }
+            AllExplors::Second(F2Explors::Stairs2) => {
+                game.state.set_current_floor(FloorTypes::Third);
+            }
             _ => (),
         }
     }
@@ -389,6 +392,136 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 target_area: F2Areas::BalanceAlong.into(),
                 automate_limit: 4,
             },
+            F2Explors::HitTheLever => WExploration {
+                name: wrapped_type,
+                display_name: "Hit the lever",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Agility,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::HitTheLever.into(),
+                automate_limit: 4,
+            },
+            F2Explors::Clearing => WExploration {
+                name: wrapped_type,
+                display_name: "Clearing",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Agility,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::Clearing.into(),
+                automate_limit: 4,
+            },
+            F2Explors::BridgeGap => WExploration {
+                name: wrapped_type,
+                display_name: "Bridge the gap",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Agility,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::BridgeGap.into(),
+                automate_limit: 4,
+            },
+            F2Explors::MeetTheTrader => WExploration {
+                name: wrapped_type,
+                display_name: "Meet the trader",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Conversation,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::MeetTheTrader.into(),
+                automate_limit: 4,
+            },
+            F2Explors::KillTrader => WExploration {
+                name: wrapped_type,
+                display_name: "Kill the trader",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Agility,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::KillTrader.into(),
+                automate_limit: 4,
+            },
+            F2Explors::Negotiate => WExploration {
+                name: wrapped_type,
+                display_name: "Negotiate",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Conversation,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::Negotiate.into(),
+                automate_limit: 4,
+            },
+            F2Explors::Argue => WExploration {
+                name: wrapped_type,
+                display_name: "Argue",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Conversation,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::Argue.into(),
+                automate_limit: 4,
+            },
+            F2Explors::Haggle => WExploration {
+                name: wrapped_type,
+                display_name: "Haggle",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Conversation,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::Haggle.into(),
+                automate_limit: 4,
+            },
+            F2Explors::UnlockStairs => WExploration {
+                name: wrapped_type,
+                display_name: "Unlock stairs",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Agility,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F2Areas::UnlockStairs.into(),
+                automate_limit: 4,
+            },
+            F2Explors::Stairs2 => WExploration {
+                name: wrapped_type,
+                display_name: "Floor3",
+                description: "",
+                story_line: "",
+                skill: SkillTypes::Agility,
+                required_xp: 80.0,
+                dps: 0.0,
+                is_reenterable: false,
+                icon: IconType::Agility.into(),
+                target_area: F3Areas::Test.into(),
+                automate_limit: 4,
+            },
         };
         explorations.push(exploration);
     }
@@ -449,8 +582,17 @@ pub fn should_be_visible_exploration(exploration_type: AllExplors, game: &Game) 
             }
             _ => true,
         },
-        AllExplors::Second(_) => true,
-        AllExplors::Third(_) => true,
+        AllExplors::Second(second) => match second {
+            F2Explors::BridgeGap => {
+                game.state
+                    .get_crafting(F2Crafts::Bridge.into())
+                    .is_completed
+            }
+            _ => true,
+        },
+        AllExplors::Third(third) => match third {
+            _ => true,
+        },
     }
 }
 
