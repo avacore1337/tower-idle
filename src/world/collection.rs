@@ -72,8 +72,7 @@ pub fn get_first_floor_collections() -> Vec<WCollection> {
             F1Collects::MetalScrap => WCollection {
                 name: wrapped_type,
                 display_name: "Scavenge nails",
-                description:
-                    "You break apart furniture for nails. If you need metal, you need metal",
+                description: "You break apart furniture for nails. If you need metal, you need metal",
                 skill: SkillTypes::Woodcutting,
                 required_xp: 10.0,
                 icon: IconType::Agility.into(),
@@ -121,8 +120,7 @@ pub fn get_first_floor_collections() -> Vec<WCollection> {
             F1Collects::Crystal => WCollection {
                 name: wrapped_type,
                 display_name: "Collect crystals",
-                description:
-                    "There is a large chunk of crystal ore that you can collect crystals from",
+                description: "There is a large chunk of crystal ore that you can collect crystals from",
                 skill: SkillTypes::Mining,
                 required_xp: 20.0,
                 icon: IconType::Mining.into(),
@@ -276,17 +274,14 @@ pub fn should_be_visible_collection(collection_type: AllCollects, game: &Game) -
     match collection_type {
         AllCollects::First(First) => match First {
             F1Collects::MagicDust => {
-                has_explored(F1Explors::Hallway.into(), game)
-                    && !has_explored(F1Explors::BlockedDoor.into(), game)
+                has_explored(F1Explors::Hallway.into(), game) && !has_explored(F1Explors::BlockedDoor.into(), game)
             }
             F1Collects::MetalScrap => has_explored(F1Explors::Hallway.into(), game),
             F1Collects::Rock => {
-                has_explored(F1Explors::SideArea.into(), game)
-                    && !has_explored(F1Explors::BlockedDoor.into(), game)
+                has_explored(F1Explors::SideArea.into(), game) && !has_explored(F1Explors::BlockedDoor.into(), game)
             }
             F1Collects::Wood => {
-                has_explored(F1Explors::SideArea.into(), game)
-                    && !has_explored(F1Explors::BlockedDoor.into(), game)
+                has_explored(F1Explors::SideArea.into(), game) && !has_explored(F1Explors::BlockedDoor.into(), game)
             }
 
             F1Collects::CrystalFragments => has_explored(F1Explors::BlockedDoor.into(), game),
@@ -294,20 +289,20 @@ pub fn should_be_visible_collection(collection_type: AllCollects, game: &Game) -
         },
         AllCollects::Second(Second) => match Second {
             F2Collects::HuntRat => {
-                has_explored(F2Explors::WideHallway.into(), game)
-                    && !has_explored(F2Explors::Intersection.into(), game)
+                has_explored(F2Explors::WideHallway.into(), game) && !has_explored(F2Explors::Intersection.into(), game)
             }
             F2Collects::Stick => {
                 has_explored(F2Explors::ExploreHallway.into(), game)
                     && !has_explored(F2Explors::Intersection.into(), game)
             }
             F2Collects::ExtractCrystal => {
-                has_explored(F2Explors::FightWolf.into(), game)
-                    && !has_explored(F2Explors::Intersection.into(), game)
+                has_explored(F2Explors::FightWolf.into(), game) && !has_explored(F2Explors::Intersection.into(), game)
+            }
+            F2Collects::Poison => {
+                has_explored(F2Explors::Laboratory.into(), game) && !has_explored(F2Explors::Intersection.into(), game)
             }
             F2Collects::HuntRabbits => {
-                has_explored(F2Explors::Jump.into(), game)
-                    && !has_explored(F2Explors::RabbitKing.into(), game)
+                has_explored(F2Explors::Jump.into(), game) && !has_explored(F2Explors::RabbitKing.into(), game)
             }
             F2Collects::Flint => {
                 has_explored(F2Explors::RemoveDebris.into(), game)
@@ -315,7 +310,6 @@ pub fn should_be_visible_collection(collection_type: AllCollects, game: &Game) -
             }
             F2Collects::Log => has_explored(F2Explors::Clearing.into(), game),
             F2Collects::TraderCollect => has_explored(F2Explors::Argue.into(), game),
-            F2Collects::Poison => has_explored(F2Explors::Laboratory.into(), game),
         },
         AllCollects::Third(Third) => match Third {
             F3Collects::Test => false,

@@ -70,6 +70,7 @@ fn make_f3() -> GameSave {
     set_talent(state, SkillTypes::Crafting, 20.0);
     set_talent(state, SkillTypes::Alchemy, 20.0);
     set_talent(state, SkillTypes::Hunting, 22.0);
+    set_talent(state, SkillTypes::Fighting, 4.0);
     game_save
 }
 
@@ -83,6 +84,7 @@ fn make_f4() -> GameSave {
     set_talent(state, SkillTypes::Crafting, 40.0);
     set_talent(state, SkillTypes::Alchemy, 40.0);
     set_talent(state, SkillTypes::Hunting, 40.0);
+    set_talent(state, SkillTypes::Fighting, 15.0);
     game_save
 }
 

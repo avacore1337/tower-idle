@@ -21,16 +21,10 @@ impl WSkill {
     pub fn get_skills_gains(&self, game: &mut Game) {
         let skill_state = &mut game.state.skills[self.name as usize];
 
-        game.intermediate_state.add_multiplier(
-            self.name.into(),
-            1.05_f64.powf(skill_state.level),
-            "level",
-        );
-        game.intermediate_state.add_multiplier(
-            self.name.into(),
-            1.05_f64.powf(skill_state.talent),
-            "talent",
-        );
+        game.intermediate_state
+            .add_multiplier(self.name.into(), 1.05_f64.powf(skill_state.level), "level");
+        game.intermediate_state
+            .add_multiplier(self.name.into(), 1.05_f64.powf(skill_state.talent), "talent");
     }
 }
 
@@ -117,8 +111,7 @@ pub fn should_be_visible_skill(skill_type: SkillTypes, game: &Game) -> bool {
 }
 
 pub fn get_skills() -> [WSkill; SKILL_SIZE] {
-    let mut skills: [MaybeUninit<WSkill>; SKILL_SIZE] =
-        unsafe { MaybeUninit::uninit().assume_init() };
+    let mut skills: [MaybeUninit<WSkill>; SKILL_SIZE] = unsafe { MaybeUninit::uninit().assume_init() };
     for name in SkillTypes::iter() {
         skills[name as usize].write(translate_skill(name));
     }

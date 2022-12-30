@@ -73,26 +73,16 @@ pub fn do_action(game: &mut Game) {
 
 pub fn auto_schedule_action(game: &mut Game) -> bool {
     let wfloor = &game.world.floors[game.state.current_floor as usize];
-    let coll_prios = wfloor
-        .collections
-        .iter()
-        .map(|x| Priority::new(x.name, game));
+    let coll_prios = wfloor.collections.iter().map(|x| Priority::new(x.name, game));
     let craft_prios = wfloor.craftings.iter().map(|x| Priority::new(x.name, game));
-    let explo_prios = wfloor
-        .explorations
-        .iter()
-        .map(|x| Priority::new(x.name, game));
+    let explo_prios = wfloor.explorations.iter().map(|x| Priority::new(x.name, game));
     let res = coll_prios
         .chain(craft_prios)
         .chain(explo_prios)
         .reduce(|accum, item| if accum >= item { accum } else { item });
     if let Some(higest_priority) = res {
-        if higest_priority.is_doable
-            && higest_priority.is_automatable
-            && higest_priority.user_priority > 0
-        {
-            game.action_queue
-                .preppend_action(higest_priority.action_entry);
+        if higest_priority.is_doable && higest_priority.is_automatable && higest_priority.user_priority > 0 {
+            game.action_queue.preppend_action(higest_priority.action_entry);
             return true;
         }
     }
@@ -155,27 +145,23 @@ fn status_multipliers(game: &mut Game) {
 
 pub fn update_unlocks(game: &mut Game) {
     for collection in AllCollects::iter() {
-        game.state.get_mut_collection(collection).is_visible =
-            should_be_visible_collection(collection, game);
+        game.state.get_mut_collection(collection).is_visible = should_be_visible_collection(collection, game);
         let mut collection = game.state.get_mut_collection(collection);
         collection.has_seen |= collection.is_visible;
     }
     for crafting in AllCrafts::iter() {
-        game.state.get_mut_crafting(crafting).is_visible =
-            should_be_visible_crafting(crafting, game);
+        game.state.get_mut_crafting(crafting).is_visible = should_be_visible_crafting(crafting, game);
         let mut crafting = game.state.get_mut_crafting(crafting);
         crafting.has_seen |= crafting.is_visible;
     }
     for exploration in AllExplors::iter() {
-        game.state.get_mut_exploration(exploration).is_visible =
-            should_be_visible_exploration(exploration, game);
+        game.state.get_mut_exploration(exploration).is_visible = should_be_visible_exploration(exploration, game);
         let mut exploration = game.state.get_mut_exploration(exploration);
         exploration.has_seen |= exploration.is_visible;
     }
     for item_type in ItemTypes::iter() {
         if !game.state.items[item_type as usize].is_visible {
-            game.state.items[item_type as usize].is_visible =
-                should_be_visible_item(item_type, game);
+            game.state.items[item_type as usize].is_visible = should_be_visible_item(item_type, game);
         }
     }
     for stat in SkillTypes::iter() {
@@ -195,28 +181,21 @@ pub fn calculate_completion_times(game: &mut Game) {
         let wexploration = game.world.get_wexploration(exploration_type);
         let xp_rate = game.state.skills[wexploration.skill as usize].xp_rate;
         let exploration = game.state.get_mut_exploration(exploration_type);
-        exploration.ticks_to_complete = f64::min(
-            f64::ceil(wexploration.required_xp / xp_rate),
-            u32::MAX as f64,
-        ) as u32;
+        exploration.ticks_to_complete = f64::min(f64::ceil(wexploration.required_xp / xp_rate), u32::MAX as f64) as u32;
     }
     for collection_type in AllCollects::iter() {
         // log::info!("collection: {:#?}", collection_type);
         let wcollection = game.world.get_wcollection(collection_type);
         let xp_rate = game.state.skills[wcollection.skill as usize].xp_rate;
         let collection = game.state.get_mut_collection(collection_type);
-        collection.ticks_to_complete = f64::min(
-            f64::ceil(wcollection.required_xp / xp_rate),
-            u32::MAX as f64,
-        ) as u32;
+        collection.ticks_to_complete = f64::min(f64::ceil(wcollection.required_xp / xp_rate), u32::MAX as f64) as u32;
     }
     for crafting_type in AllCrafts::iter() {
         // log::info!("collection: {:#?}", crafting_type);
         let wcraft = game.world.get_wcrafting(crafting_type);
         let xp_rate = game.state.skills[wcraft.skill as usize].xp_rate;
         let craft = game.state.get_mut_crafting(crafting_type);
-        craft.ticks_to_complete =
-            f64::min(f64::ceil(wcraft.required_xp / xp_rate), u32::MAX as f64) as u32;
+        craft.ticks_to_complete = f64::min(f64::ceil(wcraft.required_xp / xp_rate), u32::MAX as f64) as u32;
     }
 }
 

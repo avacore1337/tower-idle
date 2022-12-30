@@ -42,8 +42,7 @@ impl Skill {
 }
 
 pub fn get_skills() -> [Skill; SKILL_SIZE] {
-    let mut skills: [MaybeUninit<Skill>; SKILL_SIZE] =
-        unsafe { MaybeUninit::uninit().assume_init() };
+    let mut skills: [MaybeUninit<Skill>; SKILL_SIZE] = unsafe { MaybeUninit::uninit().assume_init() };
     for name in SkillTypes::iter() {
         skills[name as usize].write(Skill::new(name));
     }

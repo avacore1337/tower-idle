@@ -40,8 +40,7 @@ impl Floor {
 }
 
 pub fn get_floors() -> [Floor; FLOOR_SIZE] {
-    let mut floors: [MaybeUninit<Floor>; FLOOR_SIZE] =
-        unsafe { MaybeUninit::uninit().assume_init() };
+    let mut floors: [MaybeUninit<Floor>; FLOOR_SIZE] = unsafe { MaybeUninit::uninit().assume_init() };
     for name in FloorTypes::iter() {
         floors[name as usize].write(Floor::new(name));
     }

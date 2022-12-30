@@ -83,10 +83,7 @@ impl IntermediateState {
     }
 
     pub fn add_multiplier(&mut self, key: KeyValues, factor: f64, source_descriptor: &'static str) {
-        let values = self
-            .value_gains
-            .entry(key)
-            .or_insert_with(|| ValueGains::new(key));
+        let values = self.value_gains.entry(key).or_insert_with(|| ValueGains::new(key));
         values.multipliers.push(Multiplier {
             factor,
             source_descriptor,
@@ -94,10 +91,7 @@ impl IntermediateState {
     }
 
     pub fn set_base(&mut self, key: KeyValues, base: f64, source_descriptor: &'static str) {
-        let values = self
-            .value_gains
-            .entry(key)
-            .or_insert_with(|| ValueGains::new(key));
+        let values = self.value_gains.entry(key).or_insert_with(|| ValueGains::new(key));
         values.bases = vec![Base {
             base,
             source_descriptor,
@@ -105,10 +99,7 @@ impl IntermediateState {
     }
 
     pub fn add_base(&mut self, key: KeyValues, base: f64, source_descriptor: &'static str) {
-        let values = self
-            .value_gains
-            .entry(key)
-            .or_insert_with(|| ValueGains::new(key));
+        let values = self.value_gains.entry(key).or_insert_with(|| ValueGains::new(key));
         values.bases.push(Base {
             base,
             source_descriptor,

@@ -63,6 +63,7 @@ function handleEscape(event) {
   display: flex;
   flex-direction: column;
   max-height: 90%;
+  overflow-y: scroll;
   margin: 0 1rem;
   padding: 1rem;
   border: 1px solid #e2e8f0;

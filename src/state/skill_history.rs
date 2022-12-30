@@ -40,8 +40,7 @@ impl From<&Skill> for SkillHistory {
 }
 
 pub fn get_skill_history(state: &State) -> [SkillHistory; SKILL_SIZE] {
-    let mut skills: [MaybeUninit<SkillHistory>; SKILL_SIZE] =
-        unsafe { MaybeUninit::uninit().assume_init() };
+    let mut skills: [MaybeUninit<SkillHistory>; SKILL_SIZE] = unsafe { MaybeUninit::uninit().assume_init() };
     for skill in SkillTypes::iter() {
         skills[skill as usize].write((&state.skills[skill as usize]).into());
     }

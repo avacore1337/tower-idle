@@ -3,9 +3,7 @@ use std::mem::variant_count;
 use strum::{EnumIter, IntoEnumIterator};
 use tsify::Tsify;
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 
 pub enum F1Areas {
     #[default]
@@ -21,9 +19,7 @@ pub enum F1Areas {
     Shrine,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F2Areas {
     #[default]
     StairWell,
@@ -51,9 +47,7 @@ pub enum F2Areas {
     UnlockStairs,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F3Areas {
     #[default]
     Test,

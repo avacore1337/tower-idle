@@ -38,16 +38,11 @@ impl WCrafting {
                 _ => {}
             },
             AllCrafts::Second(Second) => match Second {
-                F2Crafts::BetterAxe => {
-                    game.state.get_mut_boost(BoostTypes::BetterAxe).unlocked = true
-                }
+                F2Crafts::BetterAxe => game.state.get_mut_boost(BoostTypes::BetterAxe).unlocked = true,
                 F2Crafts::Spear => game.state.get_mut_boost(BoostTypes::Spear).unlocked = true,
-                F2Crafts::PoisonTippedSpear => {
-                    game.state
-                        .get_mut_boost(BoostTypes::PoisonTippedSpear)
-                        .unlocked = true
-                }
-                F2Crafts::Bridge => {} // _ => {}
+                F2Crafts::PoisonTippedSpear => game.state.get_mut_boost(BoostTypes::PoisonTippedSpear).unlocked = true,
+                F2Crafts::Bridge => {}
+                F2Crafts::BuyKey => {}
             },
             AllCrafts::Third(Third) => match Third {
                 // F3Crafts::Test => {}
@@ -125,7 +120,8 @@ pub fn get_first_floor_craftings() -> Vec<WCrafting> {
             F1Crafts::RepairAlchemy => WCrafting {
                 name: wrapped_type,
                 display_name: "Repair alchemy table",
-                description: "A Table where you can performe alchemy, needed to convert the big crystals into something useful",
+                description:
+                    "A Table where you can performe alchemy, needed to convert the big crystals into something useful",
                 materials: vec![
                     WMaterial {
                         item: ItemTypes::Stone,
@@ -230,7 +226,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 }],
                 segments_needed: 10,
                 skill: SkillTypes::Crafting,
-                required_xp: 12.0,
+                required_xp: 300.0,
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
@@ -245,7 +241,22 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 }],
                 segments_needed: 10,
                 skill: SkillTypes::Crafting,
-                required_xp: 12.0,
+                required_xp: 500.0,
+                icon: IconType::Crafting.into(),
+                repeatable: false,
+                automate_limit: 4,
+            },
+            F2Crafts::BuyKey => WCrafting {
+                name: wrapped_type,
+                display_name: "BuyKey",
+                description: "TODO",
+                materials: vec![WMaterial {
+                    item: ItemTypes::TraderCollect,
+                    amount: 10,
+                }],
+                segments_needed: 1,
+                skill: SkillTypes::Crafting,
+                required_xp: 10.0,
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
@@ -299,10 +310,7 @@ pub fn should_be_visible_crafting(crafting_type: AllCrafts, game: &Game) -> bool
             F1Crafts::RepairAlchemy => has_explored(F1Explors::Laboratory.into(), game),
             F1Crafts::CrushCrystal => {
                 game.state.get_item(ItemTypes::Crystal).is_visible
-                    && game
-                        .state
-                        .get_crafting(F1Crafts::RepairAlchemy.into())
-                        .is_completed
+                    && game.state.get_crafting(F1Crafts::RepairAlchemy.into()).is_completed
             }
             F1Crafts::Altar => has_explored(F1Explors::Shrine.into(), game),
         },
@@ -311,6 +319,7 @@ pub fn should_be_visible_crafting(crafting_type: AllCrafts, game: &Game) -> bool
             F2Crafts::PoisonTippedSpear => has_explored(F2Explors::Laboratory.into(), game),
             F2Crafts::BetterAxe => has_explored(F2Explors::RemoveDebris.into(), game),
             F2Crafts::Bridge => has_explored(F2Explors::Clearing.into(), game),
+            F2Crafts::BuyKey => has_explored(F2Explors::Haggle.into(), game),
         },
         AllCrafts::Third(Third) => match Third {
             F3Crafts::Test => false,
@@ -361,7 +370,6 @@ pub fn need_to_pay_crafting(crafting_type: AllCrafts, game: &Game) -> bool {
     if crafting.segments_paid == wcrafting.segments_needed {
         return false;
     }
-    let segment_paid_percentage =
-        (crafting.segments_paid as f64 / wcrafting.segments_needed as f64) * 100.0;
+    let segment_paid_percentage = (crafting.segments_paid as f64 / wcrafting.segments_needed as f64) * 100.0;
     crafting.completion_percentage >= segment_paid_percentage
 }

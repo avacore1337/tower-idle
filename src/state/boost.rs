@@ -20,8 +20,7 @@ impl Boost {
 }
 
 pub fn get_boosts() -> [Boost; BOOST_SIZE] {
-    let mut boosts: [MaybeUninit<Boost>; BOOST_SIZE] =
-        unsafe { MaybeUninit::uninit().assume_init() };
+    let mut boosts: [MaybeUninit<Boost>; BOOST_SIZE] = unsafe { MaybeUninit::uninit().assume_init() };
     for name in BoostTypes::iter() {
         boosts[name as usize].write(Boost::new(name));
     }

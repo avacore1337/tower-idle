@@ -6,9 +6,7 @@ use std::mem::variant_count;
 use strum::{EnumIter, IntoEnumIterator};
 use tsify::Tsify;
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 
 pub enum F1Explors {
     #[default]
@@ -25,9 +23,7 @@ pub enum F1Explors {
     Stairs,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F2Explors {
     #[default]
     WideHallway,
@@ -55,9 +51,7 @@ pub enum F2Explors {
     Stairs2,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F3Explors {
     #[default]
     Test,

@@ -15,11 +15,8 @@ pub fn explore_action(game: &mut Game, exploration: AllExplors) -> ActionResult 
     let skill = wexploration.skill;
     game.state.current_skill = skill;
     if wexploration.dps > 0.0 {
-        game.intermediate_state.add_base(
-            KeyValues::HealthDrain,
-            wexploration.dps,
-            "Exploration damage",
-        );
+        game.intermediate_state
+            .add_base(KeyValues::HealthDrain, wexploration.dps, "Exploration damage");
     }
     general_action(game); // Health Update
     let floor_index = FloorTypes::from(exploration) as usize;
@@ -57,10 +54,7 @@ pub fn queue_up_collection(game: &mut Game, crafting: AllCrafts) -> ActionResult
     for wcollection in wfloor.collections.iter() {
         if let Collect::Item(item) = &wcollection.collect {
             let collection = game.state.get_collection(wcollection.name);
-            if missing_items.contains(item)
-                && can_collect(wcollection.name, game)
-                && collection.is_automatable
-            {
+            if missing_items.contains(item) && can_collect(wcollection.name, game) && collection.is_automatable {
                 return ActionResult::NewAction(wcollection.to_action_entry(1));
             }
         }

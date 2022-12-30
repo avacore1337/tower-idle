@@ -34,8 +34,7 @@ pub fn translate_floor(floor: FloorTypes) -> WFloor {
 }
 
 pub fn get_floors() -> [WFloor; FLOOR_SIZE] {
-    let mut floors: [MaybeUninit<WFloor>; FLOOR_SIZE] =
-        unsafe { MaybeUninit::uninit().assume_init() };
+    let mut floors: [MaybeUninit<WFloor>; FLOOR_SIZE] = unsafe { MaybeUninit::uninit().assume_init() };
     for name in FloorTypes::iter() {
         floors[name as usize].write(translate_floor(name));
     }

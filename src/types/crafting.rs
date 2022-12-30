@@ -11,9 +11,7 @@ use tsify::Tsify;
 // use num_derive::FromPrimitive;
 // use num_traits::FromPrimitive;
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 
 pub enum F1Crafts {
     #[default]
@@ -24,20 +22,17 @@ pub enum F1Crafts {
     CrushCrystal,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F2Crafts {
     #[default]
     Spear,
     PoisonTippedSpear,
     BetterAxe,
     Bridge,
+    BuyKey,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F3Crafts {
     #[default]
     Test,

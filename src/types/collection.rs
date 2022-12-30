@@ -6,9 +6,7 @@ use std::mem::variant_count;
 use strum::{EnumIter, IntoEnumIterator};
 use tsify::Tsify;
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 
 pub enum F1Collects {
     #[default]
@@ -20,9 +18,7 @@ pub enum F1Collects {
     Crystal,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F2Collects {
     #[default]
     HuntRat,
@@ -35,9 +31,7 @@ pub enum F2Collects {
     TraderCollect,
 }
 
-#[derive(
-    Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd,
-)]
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F3Collects {
     #[default]
     Test,

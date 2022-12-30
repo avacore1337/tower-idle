@@ -39,9 +39,7 @@ pub fn generate_map_data(game: &mut Game, floor: FloorTypes) -> MapData {
         });
         if exploration_index != 0 {
             edges.push(Edge {
-                source: wfloor.explorations[(exploration_index - 1)]
-                    .display_name
-                    .to_string(),
+                source: wfloor.explorations[(exploration_index - 1)].display_name.to_string(),
                 target: exploration.display_name.to_string(),
             });
         }

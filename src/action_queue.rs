@@ -25,9 +25,7 @@ impl Default for ActionQueue {
 
 impl ActionQueue {
     pub fn new() -> ActionQueue {
-        ActionQueue {
-            queue: VecDeque::new(),
-        }
+        ActionQueue { queue: VecDeque::new() }
     }
 
     pub fn lower_action_count(&mut self, index: u32) {

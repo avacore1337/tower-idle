@@ -449,11 +449,11 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 display_name: "Kill the trader",
                 description: "",
                 story_line: "",
-                skill: SkillTypes::Agility,
-                required_xp: 80.0,
-                dps: 0.0,
+                skill: SkillTypes::Fighting,
+                required_xp: 200.0,
+                dps: 4.0,
                 is_reenterable: false,
-                icon: IconType::Agility.into(),
+                icon: IconType::Fighting.into(),
                 target_area: F2Areas::KillTrader.into(),
                 automate_limit: 4,
             },
@@ -463,7 +463,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 description: "",
                 story_line: "",
                 skill: SkillTypes::Conversation,
-                required_xp: 80.0,
+                required_xp: 120.0,
                 dps: 0.0,
                 is_reenterable: false,
                 icon: IconType::Agility.into(),
@@ -476,7 +476,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 description: "",
                 story_line: "",
                 skill: SkillTypes::Conversation,
-                required_xp: 80.0,
+                required_xp: 180.0,
                 dps: 0.0,
                 is_reenterable: false,
                 icon: IconType::Agility.into(),
@@ -489,7 +489,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 description: "",
                 story_line: "",
                 skill: SkillTypes::Conversation,
-                required_xp: 80.0,
+                required_xp: 300.0,
                 dps: 0.0,
                 is_reenterable: false,
                 icon: IconType::Agility.into(),
@@ -502,7 +502,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 description: "",
                 story_line: "",
                 skill: SkillTypes::Agility,
-                required_xp: 80.0,
+                required_xp: 200.0,
                 dps: 0.0,
                 is_reenterable: false,
                 icon: IconType::Agility.into(),
@@ -515,7 +515,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 description: "",
                 story_line: "",
                 skill: SkillTypes::Agility,
-                required_xp: 80.0,
+                required_xp: 200.0,
                 dps: 0.0,
                 is_reenterable: false,
                 icon: IconType::Agility.into(),
@@ -575,18 +575,14 @@ pub fn should_be_visible_exploration(exploration_type: AllExplors, game: &Game) 
     // Add extra requirements here
     match exploration_type {
         AllExplors::First(first) => match first {
-            F1Explors::BrokenHandle => {
-                game.state
-                    .get_crafting(F1Crafts::DoorHandle.into())
-                    .is_completed
-            }
+            F1Explors::BrokenHandle => game.state.get_crafting(F1Crafts::DoorHandle.into()).is_completed,
             _ => true,
         },
         AllExplors::Second(second) => match second {
-            F2Explors::BridgeGap => {
-                game.state
-                    .get_crafting(F2Crafts::Bridge.into())
-                    .is_completed
+            F2Explors::BridgeGap => game.state.get_crafting(F2Crafts::Bridge.into()).is_completed,
+            F2Explors::UnlockStairs => {
+                game.state.get_crafting(F2Crafts::BuyKey.into()).is_completed
+                    || game.state.get_exploration(F2Explors::KillTrader.into()).is_completed
             }
             _ => true,
         },
