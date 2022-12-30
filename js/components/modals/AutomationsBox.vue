@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <template>
   <div class="row-flex">
-    <div v-for="category in categories" class="action-box">
+    <div v-for="category in categories" :key="category.name" class="action-box">
       <div class="i-title">
         {{ category.name }}
       </div>
@@ -12,7 +12,7 @@
           <span class="action-width"> Name </span>
           <span class="toggle-box-width"> Auto </span>
         </div>
-        <div class="action-row" v-for="action in category.actions">
+        <div v-for="action in category.actions" :key="action.name" class="action-row">
           <my-icon class="icon-width" :icon="action.icon" />
 
           <span class="action-width between-flex">
@@ -37,17 +37,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue"
 import type { Icon } from "@p/index"
 import { computed } from "vue"
 import { useStore } from "@store"
 
-let props = defineProps({
+defineProps({
   categories: { type: Object, required: true },
 })
 
 let store = useStore()
-let wasm = computed(() => store.state.wasm)
+/* let wasm = computed(() => store.state.wasm) */
 let icons = computed(() => store.state.world.icons)
 
 function get_priority_icon(item: any): Icon {

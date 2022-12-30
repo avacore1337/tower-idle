@@ -10,12 +10,12 @@ import { GraphChart } from "echarts/charts"
 import { TitleComponent, TooltipComponent, LegendComponent } from "echarts/components"
 import VChart, { THEME_KEY } from "vue-echarts"
 import { Ref, ref, provide, watch, computed } from "vue"
-import Rand, { PRNG } from "rand-seed"
+/* import Rand, { PRNG } from "rand-seed" */
 import { useStore } from "@store"
 use([CanvasRenderer, GraphChart, TitleComponent, TooltipComponent, LegendComponent])
 
 let store = useStore()
-let wasm = computed(() => store.state.wasm)
+/* let wasm = computed(() => store.state.wasm) */
 
 const props = defineProps({
   datas: { type: Object, required: true },

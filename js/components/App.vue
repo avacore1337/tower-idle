@@ -14,7 +14,6 @@ import Debug from "@c/Debug.vue"
 import Modals from "@c/modals/Modals.vue"
 import { computed, ref, onMounted } from "vue"
 import { useStore } from "@store"
-import { $vfm } from "vue-final-modal"
 
 let store = useStore()
 let wasm = computed(() => store.state.wasm)

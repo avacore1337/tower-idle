@@ -109,7 +109,7 @@ export const createMyStore = function (wasm: Wasm): Store<State> {
 
 function internal_update_dynamic_data(state: State): void {
   state.user_settings = state.wasm.get_user_settings()
-  let messages = state.wasm.get_new_texts()
+  const messages = state.wasm.get_new_texts()
   if (messages.length != 0) {
     state.messages.push(...messages)
   }

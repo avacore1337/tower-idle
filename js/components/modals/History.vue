@@ -22,7 +22,6 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue"
-import { $vfm } from "vue-final-modal"
 import EChart from "@c/modals/EChart.vue"
 import { computed } from "vue"
 import { useStore } from "@store"

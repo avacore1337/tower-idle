@@ -46,7 +46,7 @@ function addEscapeListener() {
   window.addEventListener("keydown", handleEscape)
 }
 
-function removeEscapeListener(newShowModal, previousShowModal) {
+function removeEscapeListener() {
   window.removeEventListener("keydown", handleEscape)
 }
 

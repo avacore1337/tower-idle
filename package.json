@@ -6,7 +6,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "postdeploy": "rimraf dist",
-    "dev": "rimraf dist pkg && webpack serve",
+    "dev": "rimraf dist pkg && webpack serve --env prod=false",
     "build": "rimraf dist pkg && webpack --env prod",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix js"
   },

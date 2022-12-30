@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from "vue"
+import { ref, watch, computed } from "vue"
 import { useStore } from "@store"
 import MyToggle from "@c/util/MyToggle.vue"
 
@@ -34,7 +34,7 @@ let settings = ref(store.state.user_settings)
 
 watch(settings, save_settings, { deep: true })
 
-function save_settings(a, b) {
+function save_settings() {
   wasm.value.set_user_settings(settings.value)
 }
 

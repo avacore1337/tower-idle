@@ -10,12 +10,12 @@
     <button class="modal__close" @click="is_open = false">X</button>
     <span class="modal__title">Automation</span>
     <div class="modal__content">
-      <map :datas="data" />
+      <Map :datas="data" />
       <div class="floor_listing_container">
         <button
-          class="floor_chooser"
           v-for="(floor, index) in seen_floors"
           :key="floor.name"
+          class="floor_chooser"
           @click="chosen_floor_index = index"
         >
           {{ index + 1 }}
@@ -27,9 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue"
-import { $vfm } from "vue-final-modal"
-import type { Icon } from "@p/index"
+import { ref } from "vue"
 
 import AutomationsBox from "@c/modals/AutomationsBox.vue"
 import Map from "@c/modals/Map.vue"
@@ -39,17 +37,12 @@ import { useStore } from "@store"
 let store = useStore()
 let wasm = computed(() => store.state.wasm)
 let world = computed(() => store.state.world)
-let icons = computed(() => store.state.world.icons)
 
 let seen_floors = computed(() =>
   world.value.floors.filter((floor) => {
     return floor.has_seen
   })
 )
-
-function get_priority_icon(item: any): Icon {
-  return icons.value["Priority" + item.priority.toString()]
-}
 
 let is_open = ref(false)
 let chosen_floor_index = ref(store.getters.current_floor.floor_index)

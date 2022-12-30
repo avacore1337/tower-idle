@@ -28,6 +28,7 @@ module.exports = {
 
   rules: {
     "vue/multi-word-component-names": "off",
+    "vue/prop-name-casing": "off",
     "@typescript-eslint/no-explicit-any": "off",
   },
 }

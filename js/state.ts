@@ -12,7 +12,6 @@ import {
   WExploration,
   Collection,
   WCollection,
-  AllCollects,
   FloorTypes,
   Floor,
   WFloor,
@@ -39,7 +38,6 @@ export interface MBoost extends WBoost, Boost {}
 /* } */
 /* export interface MCrafting extends Modify<WCrafting, NewCrafting>, Modify<Crafting, NewCrafting> {} */
 
-let thing = FloorTypes.Starting
 export interface NewFloor {
   explorations: MExploration[]
   collections: MCollection[]

@@ -13,7 +13,7 @@
         <span class="death_skill_name"> Skill Name </span>
         <span class="death_skill_value"> Current</span>
       </div>
-      <div class="death_skill_wrapper" v-for="skill in relevant_skills" :key="skill.name">
+      <div v-for="skill in relevant_skills" :key="skill.name" class="death_skill_wrapper">
         <span class="death_skill_name"> {{ skill.name }} </span>
         <span class="death_skill_value"> {{ skill.talent }} (+{{ skill.talent_delta }}) </span>
       </div>
@@ -25,8 +25,6 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue"
-import { $vfm } from "vue-final-modal"
-import type { Icon } from "@p/index"
 import { computed } from "vue"
 import { useStore } from "@store"
 import AutomationsBox from "@c/modals/AutomationsBox.vue"
@@ -34,14 +32,9 @@ import AutomationsBox from "@c/modals/AutomationsBox.vue"
 let store = useStore()
 let wasm = computed(() => store.state.wasm)
 let history = computed(() => store.state.history)
-let icons = computed(() => store.state.world.icons)
 let floors = computed(() => store.state.world.floors)
 let is_dead = computed(() => store.state.world.status.is_dead)
 let is_open = ref(false)
-
-function get_priority_icon(item: any): Icon {
-  return icons.value["Priority" + item.priority.toString()]
-}
 
 let relevant_skills = computed(() =>
   history.value.current_round.skills.filter((skill) => skill.is_visible)

@@ -15,7 +15,7 @@
         <br />
         <br />
         <div class="description">
-          <div class="between-flex" v-if="item.max_completions">
+          <div v-if="item.max_completions" class="between-flex">
             <span class="data_key">round completions:</span>
             <span class="data">{{ item.round_completions }} / {{ item.max_completions }}</span>
           </div>
@@ -25,7 +25,7 @@
           </div>
           <div v-if="item.materials">
             Crafting materials needed:
-            <div class="between-flex" v-for="material in item.materials">
+            <div v-for="material in item.materials" :key="material.item" class="between-flex">
               <span class="data_key">&nbsp;&nbsp;&nbsp;&nbsp;{{ material.item }}:</span>
               <span class="data">
                 {{ material.amount * item.segments_paid }} /

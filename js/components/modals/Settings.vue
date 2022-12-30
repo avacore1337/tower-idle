@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from "vue"
+import { ref, computed } from "vue"
 import { $vfm } from "vue-final-modal"
 import { useStore } from "@store"
 import TimeDisplay from "@c/util/TimeDisplay.vue"
@@ -96,20 +96,20 @@ function showGeneralSettingsModal() {
 function download_save() {
   downloadFile(`gamesave_` + Date.now() + `.txt`, wasm.value.export_save())
 }
-function import_save_file(event) {
-  // TODO: This is only on the frontend atm, it doesn't actually save the changes
-  let files = event.target.files
-  let f = files[0]
-  let reader = new FileReader()
-  /* reader.onload = (function (theFile) { */
-  /* return function (e) { */
-  /*   let data = e.target.result */
-  /*   console.log(data) */
-  /*   wasm.value.import_save(data) */
-  /* } */
-  /* })(f) */
-  /* reader.readAsText(f) */
-}
+/* function import_save_file(event) { */
+/*   // TODO: This is only on the frontend atm, it doesn't actually save the changes */
+/*   let files = event.target.files */
+/*   let f = files[0] */
+/*   let reader = new FileReader() */
+/*   reader.onload = (function (theFile) { */
+/*   return function (e) { */
+/*     let data = e.target.result */
+/*     console.log(data) */
+/*     wasm.value.import_save(data) */
+/*   } */
+/*   })(f) */
+/*   reader.readAsText(f) */
+/* } */
 function import_save() {
   wasm.value.import_save(save_text.value)
 }
