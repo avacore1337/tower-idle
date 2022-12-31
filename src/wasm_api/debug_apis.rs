@@ -10,6 +10,12 @@ use log::info;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
+pub fn toggle_auto_rebirth() {
+    let mut game = GLOBAL_DATA.lock().unwrap();
+    game.state.status.auto_rebirth = !game.state.status.auto_rebirth;
+}
+
+#[wasm_bindgen]
 pub fn debug_die() {
     let mut game = GLOBAL_DATA.lock().unwrap();
     game.state.status.current_health = 0.0;

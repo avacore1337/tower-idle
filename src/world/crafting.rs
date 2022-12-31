@@ -274,7 +274,7 @@ pub fn get_third_floor_craftings() -> Vec<WCrafting> {
         let crafting = match crafting_type {
             F3Crafts::Test => WCrafting {
                 name: wrapped_type,
-                display_name: "Spear",
+                display_name: "Test",
                 description: "TODO",
                 materials: vec![WMaterial {
                     item: ItemTypes::Stick,

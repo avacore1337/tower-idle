@@ -1,5 +1,5 @@
 use super::*;
-use crate::world::collection::{can_collect, Collect};
+use crate::world::collection::can_collect;
 use crate::world::crafting::{can_craft, crafting_allowed};
 use crate::{action_queue::ActionEntry, game::Game};
 use serde::{Deserialize, Serialize};

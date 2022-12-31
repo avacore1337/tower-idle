@@ -1,7 +1,7 @@
 use crate::{action_queue::ActionEntry, game::Game};
 pub use area::{AllAreas, F1Areas, F2Areas, F3Areas};
 pub use collection::{
-    AllCollects, F1Collects, F2Collects, F3Collects, ALL_COLLECTIONS_SIZE, FIRST_COLLECTIONS_SIZE,
+    AllCollects, Collect, F1Collects, F2Collects, F3Collects, ALL_COLLECTIONS_SIZE, FIRST_COLLECTIONS_SIZE,
     SECOND_COLLECTIONS_SIZE, THIRD_COLLECTIONS_SIZE,
 };
 pub use crafting::{
@@ -178,6 +178,15 @@ pub enum BasePriority {
     Exploration,
     Crafting,
     Mana,
+}
+
+impl From<Collect> for BasePriority {
+    fn from(collect: Collect) -> Self {
+        match collect {
+            Collect::Mana(_) => BasePriority::Mana,
+            Collect::Item(_) => BasePriority::Material,
+        }
+    }
 }
 
 #[derive(Clone, Debug)]

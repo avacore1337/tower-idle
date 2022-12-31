@@ -1,4 +1,4 @@
-use super::{BasePriority, Prio, Recordable};
+use super::{BasePriority, ItemTypes, Prio, Recordable};
 use crate::world::collection::can_collect;
 use crate::{action_queue::ActionEntry, game::Game};
 use serde::{Deserialize, Serialize};
@@ -6,8 +6,13 @@ use std::mem::variant_count;
 use strum::{EnumIter, IntoEnumIterator};
 use tsify::Tsify;
 
-#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
+#[derive(Tsify, Serialize, Deserialize, Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub enum Collect {
+    Item(ItemTypes),
+    Mana(f64),
+}
 
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F1Collects {
     #[default]
     MetalScrap,
@@ -74,7 +79,7 @@ impl Prio for AllCollects {
         game.state.get_collection(self).is_automatable
     }
     fn get_base_priority(self, game: &Game) -> BasePriority {
-        game.world.get_wcollection(self).base_priority
+        game.world.get_wcollection(self).collect.into()
     }
     fn get_doable(self, game: &Game) -> bool {
         can_collect(self, game)

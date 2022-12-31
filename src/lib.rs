@@ -31,14 +31,13 @@ pub mod util;
 pub mod wasm_api;
 pub mod world;
 
-use crate::engine::actionless_update;
+use crate::engine::{actionless_update, do_rebirth_internal};
 use crate::types::*;
 use crate::world::item::consume_item;
 use engine::engine_run;
 use game::Game;
 use map::generate_map_data;
 use meta::UserSettings;
-use state::rebirth;
 use wasm_api::meta::do_save;
 use world::World;
 
@@ -247,13 +246,6 @@ pub fn do_rebirth() {
     }
     do_rebirth_internal(game);
     info!("Rust did rebirth");
-}
-
-pub fn do_rebirth_internal(game: &mut Game) {
-    game.history.rebirth_update(&game.state);
-    game.state.status.reincarnation += 1;
-    game.state = rebirth(&game.state);
-    actionless_update(game);
 }
 
 #[wasm_bindgen]

@@ -143,6 +143,7 @@ pub fn rebirth(state: &State) -> State {
     let mut new_state = State::default();
 
     new_state.status.reincarnation = state.status.reincarnation;
+    new_state.status.auto_rebirth = state.status.auto_rebirth;
     new_state.status.calculate_starting_health(&state.status);
 
     for (i, skill) in state.skills.iter().enumerate() {

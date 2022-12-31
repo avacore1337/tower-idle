@@ -5,6 +5,7 @@ pub mod value_keys;
 
 use crate::action_mapping::ActionResult;
 use crate::game::Game;
+use crate::state::rebirth;
 use crate::state::skill::Skill;
 use crate::state::status::base_values;
 use crate::types::*;
@@ -31,8 +32,18 @@ pub fn actionless_update(game: &mut Game) {
     }
 }
 
+pub fn do_rebirth_internal(game: &mut Game) {
+    game.history.rebirth_update(&game.state);
+    game.state.status.reincarnation += 1;
+    game.state = rebirth(&game.state);
+    actionless_update(game);
+}
+
 pub fn engine_run(game: &mut Game) {
     if game.state.status.is_dead {
+        if game.state.status.auto_rebirth {
+            do_rebirth_internal(game)
+        }
         return;
     }
     if game.state.status.waiting && game.action_queue.is_empty() {

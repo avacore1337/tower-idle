@@ -5,6 +5,9 @@
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
+pub fn toggle_auto_rebirth() {}
+
+#[wasm_bindgen]
 pub fn debug_die() {}
 
 #[wasm_bindgen]

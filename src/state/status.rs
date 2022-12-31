@@ -16,6 +16,7 @@ pub struct Status {
     pub is_dead: bool,
     pub reincarnation: u32,
     pub waiting: bool,
+    pub auto_rebirth: bool,
 }
 
 const BASE_STARTING_HEALTH: f64 = 10.0;
@@ -34,6 +35,7 @@ impl Status {
             is_dead: false,
             reincarnation: 0,
             waiting: false,
+            auto_rebirth: false,
         }
     }
 

@@ -31,6 +31,10 @@
       <br />
       <button @click="update">Update</button>
       <br />
+      <MyToggle :value="world.status.auto_rebirth" :click="wasm.toggle_auto_rebirth">
+        <br />
+        Auto rebirth
+      </MyToggle>
       <hr />
       <div>
         <div class="column-flex debug-printing">
@@ -53,6 +57,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import { useStore } from "@store"
+import MyToggle from "@c/util/MyToggle.vue"
 
 let store = useStore()
 let wasm = computed(() => store.state.wasm)

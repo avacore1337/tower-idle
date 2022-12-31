@@ -535,7 +535,7 @@ pub fn get_third_floor_explorations() -> Vec<WExploration> {
         let exploration = match exploration_type {
             F3Explors::Test => WExploration {
                 name: wrapped_type,
-                display_name: "Explore Enterance",
+                display_name: "Test",
                 description: "A wide hallway, you hear squeaks further ahead",
                 story_line: "",
                 skill: SkillTypes::Agility,

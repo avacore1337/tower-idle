@@ -3,7 +3,7 @@ use super::value_keys::KeyValues;
 use crate::action_mapping::ActionResult;
 use crate::game::Game;
 use crate::types::*;
-use crate::world::collection::{can_collect, Collect};
+use crate::world::collection::can_collect;
 use crate::world::crafting::{can_pay_crafting, crafting_allowed, need_to_pay_crafting};
 use crate::world::exploration::can_explore;
 
