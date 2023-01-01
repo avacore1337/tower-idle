@@ -1,3 +1,5 @@
+import { Icon } from "@p/index"
+
 export function merge(o: any, o2: any) {
   for (const key in o2) {
     if (!(key in o)) {
@@ -42,4 +44,9 @@ export function recurse_update(o: any, o2: any) {
       o[key] = o2[key]
     }
   }
+}
+
+export function icon_name(icon: Icon) {
+  console.log(icon.prefix + " fa-" + icon.name)
+  return icon.prefix + " fa-" + icon.name
 }

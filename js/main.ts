@@ -9,8 +9,10 @@ import { Wasm } from "./state"
 import vSelect from "vue-select"
 import "vue-select/dist/vue-select.css"
 import VueFinalModal from "vue-final-modal"
+import { add_custom_icons } from "./import_icons"
 
 library.add(fas)
+add_custom_icons()
 
 import { createApp } from "vue"
 import { createMyStore, store_key } from "./store"

@@ -3,25 +3,19 @@
   <div class="health-progress" style="position: relative">
     <div class="health-bar" :style="{ width: current_health_percentage + '%' }"></div>
     <div class="progress-text">
-      <font-awesome-icon
-        :icon="'fa-solid fa-' + icons['Clock'].name"
-        style="margin-right: 0.2rem"
-      />
-      <span style="margin-right: 3.2rem">
-        <TimeDisplay :value="current_time" />
-      </span>
-      <font-awesome-icon
-        :icon="'fa-solid fa-' + icons['Health'].name"
-        style="margin-right: 0.2rem"
-      />
-      <span style="margin-right: 3.2rem">
-        <FormatNumber :value="current_health" /> / <FormatNumber :value="max_health" />
-      </span>
-      <font-awesome-icon
-        :icon="'fa-solid fa-' + icons['HealthDrain'].name"
-        style="margin-right: 0.2rem"
-      />
-      <FormatNumber :value="health_drain" />
+      <my-icon :icon="icons['Clock']">
+        <span style="margin-right: 3.2rem">
+          <TimeDisplay :value="current_time" />
+        </span>
+      </my-icon>
+      <my-icon :icon="icons['Health']">
+        <span style="margin-right: 3.2rem">
+          <FormatNumber :value="current_health" /> / <FormatNumber :value="max_health" />
+        </span>
+      </my-icon>
+      <my-icon :icon="icons['HealthDrain']">
+        <FormatNumber :value="health_drain" />
+      </my-icon>
     </div>
   </div>
 </template>
@@ -29,6 +23,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import { useStore } from "@store"
+import { icon_name } from "@util"
 import FormatNumber from "@c/util/FormatNumber.vue"
 import TimeDisplay from "@c/util/TimeDisplay.vue"
 
@@ -51,12 +46,16 @@ let health_drain = computed(() => store.state.world.status.health_drain)
 .health-bar {
   position: absolute;
   height: 2rem;
-  background-color: #dc3545;
+  background-color: #182fa3;
 }
 
 .progress-text {
   position: absolute;
-  text-align: center;
+  display: flex;
+
+  flex-direction: row;
+  justify-content: center;
+
   padding: 0.5rem;
   color: white;
   box-sizing: inherit;

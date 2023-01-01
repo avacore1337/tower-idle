@@ -13,7 +13,7 @@
       </div>
     </div>
     <button class="settings-button" @click="showSettings">
-      <font-awesome-icon class="settings-icon" :icon="'fa-solid fa-' + icons['Settings'].name" />
+      <font-awesome-icon class="settings-icon" :icon="icon_name(icons['Settings'])" />
     </button>
   </div>
 </template>
@@ -26,6 +26,7 @@ import Skills from "@c/Skills.vue"
 import Items from "@c/Items.vue"
 import Actions from "@c/Actions.vue"
 import CurrentFloor from "@c/CurrentFloor.vue"
+import { icon_name } from "@util"
 
 import { computed } from "vue"
 import { useStore } from "@store"

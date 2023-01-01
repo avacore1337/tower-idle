@@ -6,19 +6,13 @@
       <div class="around-flex">
         <div>
           Total:
-          <font-awesome-icon
-            :icon="'fa-solid fa-' + icons['Clock'].name"
-            style="margin-right: 0.2rem"
-          />
+          <my-icon :icon="icons['Clock']" />
           <TimeDisplay :value="total_time" />
         </div>
         <my-icon :icon="icons['Tombstone']"> {{ world.status.reincarnation }} </my-icon>
         <div>
           Current:
-          <font-awesome-icon
-            :icon="'fa-solid fa-' + icons['Clock'].name"
-            style="margin-right: 0.2rem"
-          />
+          <my-icon :icon="icons['Clock']" />
           <TimeDisplay :value="current_time" />
         </div>
       </div>

@@ -129,7 +129,7 @@ body {
   margin: 0 0 0 0;
   background-color: #232c2a;
   color: white;
-  overflow-x: hidden;
+  overflow-x: scroll;
 }
 
 /* section for input, aka collection, exploration, etc */

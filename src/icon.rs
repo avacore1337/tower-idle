@@ -8,13 +8,14 @@ use wasm_bindgen::prelude::*;
 #[derive(Tsify, Serialize, Debug, Clone)]
 pub struct Icon {
     pub name: &'static str,
+    pub prefix: &'static str,
 }
 
-impl Icon {
-    pub fn new(name: &'static str) -> Icon {
-        Icon { name }
-    }
-}
+// impl Icon {
+//     pub fn new(name: &'static str) -> Icon {
+//         Icon { name }
+//     }
+// }
 
 #[wasm_bindgen]
 #[derive(Serialize, Deserialize, EnumIter, Clone, Copy, Debug, PartialEq, PartialOrd)]
@@ -58,12 +59,19 @@ pub enum IconType {
     Export,
     Import,
     Tombstone,
+    // Not using yet
+    //
+    Shield,
+    MagicWand,
+    //Custom
+    Crystal,
 }
 
 impl From<IconType> for Icon {
     fn from(icon: IconType) -> Self {
         Icon {
             name: get_icon_name(icon),
+            prefix: get_prefix(icon),
         }
     }
 }
@@ -105,7 +113,7 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         IconType::Exploration => "map-location-dot",
         IconType::Schedule => "calendar-plus",
         IconType::Clock => "clock",
-        IconType::Health => "heart",
+        IconType::Health => "crystal",
         IconType::HealthDrain => "heart-crack",
         IconType::Priority0 => "gauge-min",
         IconType::Priority1 => "gauge-low",
@@ -141,7 +149,20 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         // IconType::Question => "question",
         // IconType::Pause => "pause",
         // IconType::Death => "skull-crossbones",
-        IconType::Tombstone => "tombstone", // should be a tombstone
+        IconType::Tombstone => "tombstone",
+        // Not using yet
+        //
+        IconType::Shield => "shield-halved",
+        IconType::MagicWand => "wand-sparkles",
+        IconType::Crystal => "list-old-style",
+    }
+}
+
+pub fn get_prefix(icon: IconType) -> &'static str {
+    match icon {
+        IconType::Crystal => "fac",
+        IconType::Health => "fac",
+        _ => "fa-solid",
     }
 }
 

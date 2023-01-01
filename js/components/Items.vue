@@ -13,10 +13,9 @@
             <div class="i-name">
               <MyPopper :content="item.description">
                 {{ item.display_name }}
-                <font-awesome-icon
+                <my-icon
                   v-if="item.can_use && item.amount > 0"
-                  :icon="'fa-solid fa-' + icons['Schedule'].name"
-                  style="margin-right: 0.2rem"
+                  :icon="icons['Schedule']"
                   @click.prevent="use_item(item.name)"
                 />
               </MyPopper>
