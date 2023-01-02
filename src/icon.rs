@@ -38,6 +38,8 @@ pub enum IconType {
     Clock,
     Health,
     HealthDrain,
+    Mana,
+    ManaDrain,
     Priority0,
     Priority1,
     Priority2,
@@ -113,8 +115,10 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         IconType::Exploration => "map-location-dot",
         IconType::Schedule => "calendar-plus",
         IconType::Clock => "clock",
-        IconType::Health => "crystal",
+        IconType::Health => "hearth",
         IconType::HealthDrain => "heart-crack",
+        IconType::Mana => "crystal",
+        IconType::ManaDrain => "bolt",
         IconType::Priority0 => "gauge-min",
         IconType::Priority1 => "gauge-low",
         IconType::Priority2 => "gauge",
@@ -161,7 +165,7 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
 pub fn get_prefix(icon: IconType) -> &'static str {
     match icon {
         IconType::Crystal => "fac",
-        IconType::Health => "fac",
+        IconType::Mana => "fac",
         _ => "fa-solid",
     }
 }

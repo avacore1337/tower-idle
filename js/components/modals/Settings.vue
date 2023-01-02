@@ -6,14 +6,16 @@
       <div class="around-flex">
         <div>
           Total:
-          <my-icon :icon="icons['Clock']" />
-          <TimeDisplay :value="total_time" />
+          <my-icon :icon="icons['Clock']">
+            <TimeDisplay :value="total_time" />
+          </my-icon>
         </div>
         <my-icon :icon="icons['Tombstone']"> {{ world.status.reincarnation }} </my-icon>
         <div>
           Current:
-          <my-icon :icon="icons['Clock']" />
-          <TimeDisplay :value="current_time" />
+          <my-icon :icon="icons['Clock']">
+            <TimeDisplay :value="current_time" />
+          </my-icon>
         </div>
       </div>
       <button class="main-button" highlight @click="showHistoryModal">

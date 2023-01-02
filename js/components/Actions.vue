@@ -68,7 +68,6 @@ let no_actions = computed(() => store.state.action_queue.length === 0)
   margin-bottom: 0.3rem;
 }
 .action-box {
-  /* border: 1px solid white; */
   display: flex;
   min-width: 16rem;
   flex-direction: row;

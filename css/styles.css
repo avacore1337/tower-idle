@@ -55,7 +55,7 @@
   text-align: left;
   margin-bottom: 1rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  background-color: #f5f5f5;
+  background-color: var(--tower-main-white);
   color: #222222;
   border-radius: 1rem 1rem 1rem 1rem;
 }
@@ -123,11 +123,19 @@ tr.mydisabled {
   --popper-theme-border-radius: 6px;
   --popper-theme-padding: 32px;
   --popper-theme-box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.25);
+  --tower-main-background: #030c11;
+  --tower-main-white: #f6f8ff;
+  --tower-progress-bar: #4361ee;
+  --tower-progress-bar-other: #f6f8ff;
+  --tower-health-bar: #4361ee;
+  --tower-health-bar-other: #030c11;
+  --tower-other-color: #b96d40; /* brown sugar */
+  --tower-other-other-color: #ceff1a; /* artic lime */
 }
 
 body {
   margin: 0 0 0 0;
-  background-color: #232c2a;
+  background-color: var(--tower-main-background);
   color: white;
   overflow-x: scroll;
 }

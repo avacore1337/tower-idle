@@ -8,12 +8,12 @@
           <TimeDisplay :value="current_time" />
         </span>
       </my-icon>
-      <my-icon :icon="icons['Health']">
+      <my-icon :icon="icons['Mana']">
         <span style="margin-right: 3.2rem">
           <FormatNumber :value="current_health" /> / <FormatNumber :value="max_health" />
         </span>
       </my-icon>
-      <my-icon :icon="icons['HealthDrain']">
+      <my-icon :icon="icons['ManaDrain']">
         <FormatNumber :value="health_drain" />
       </my-icon>
     </div>
@@ -39,14 +39,14 @@ let health_drain = computed(() => store.state.world.status.health_drain)
 <style scoped>
 .health-progress {
   width: 100%;
-  background-color: #ddd;
+  background-color: var(--tower-health-bar-other);
   height: 2rem;
 }
 
 .health-bar {
   position: absolute;
   height: 2rem;
-  background-color: #182fa3;
+  background-color: var(--tower-health-bar);
 }
 
 .progress-text {
@@ -57,7 +57,7 @@ let health_drain = computed(() => store.state.world.status.health_drain)
   justify-content: center;
 
   padding: 0.5rem;
-  color: white;
+  color: var(--tower-main-white);
   box-sizing: inherit;
   white-space: nowrap;
   width: 100%;

@@ -6,8 +6,12 @@
           <my-icon :icon="skill.icon" />
           {{ skill.name }} {{ skill.level }}
         </div>
-        <MyProgressBar :value="skill.level_percent" />
-        <MyProgressBar :value="skill.talent_percent" />
+        <MyProgressBar class="skill-progress" :value="skill.level_percent" />
+        <MyProgressBar
+          class="skill-progress"
+          :value="skill.talent_percent"
+          color="progress-other"
+        />
       </SkillPopper>
     </div>
   </div>
@@ -47,7 +51,9 @@ let skills = computed(() =>
   gap: 1px;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
-  margin-bottom: 1px;
+}
+.skill-progress {
+  margin-bottom: 0.1rem;
 }
 .text-box {
   display: flex;

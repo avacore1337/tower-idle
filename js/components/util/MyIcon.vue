@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span class="vertical-align">
     <font-awesome-icon :icon="iconName" style="margin-right: 0.2rem" />
     <slot v-if="text === ''" />
     <span v-if="text !== ''" style="white-space: nowrap"> {{ text }} </span>
