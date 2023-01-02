@@ -3,7 +3,7 @@
 #![allow(unused_imports)]
 
 use all_asserts::{assert_ge, assert_le};
-use tower::do_rebirth_internal;
+use tower::engine::do_rebirth_internal;
 use tower::game::Game;
 use tower::presets::make_f2;
 use tower::types::*;

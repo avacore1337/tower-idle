@@ -1,15 +1,17 @@
 <template>
   <div>
     <HealthBar class="main-bar" />
-    <Skills class="main-bar" />
-    <div class="main-container">
-      <CurrentFloor class="action-column" />
-      <div class="spreader">
-        <div class="sub-container">
-          <Items class="main-column" />
-          <Actions class="main-column" />
+    <div class="below-bar">
+      <Skills class="skills-column" />
+      <div class="main-container">
+        <CurrentFloor class="action-column" />
+        <div class="spreader">
+          <div class="sub-container">
+            <Items class="main-column" />
+            <Actions class="main-column" />
+          </div>
+          <Info class="info-column" />
         </div>
-        <Info class="info-column" />
       </div>
     </div>
     <button class="settings-button" @click="showSettings">
@@ -49,7 +51,7 @@ function showSettings() {
   z-index: 2000;
   position: fixed;
   bottom: 0.5rem;
-  left: 0.5rem;
+  right: 0.5rem;
 }
 .main-bar {
   flex-grow: 0;
@@ -62,6 +64,13 @@ function showSettings() {
 .sub-container {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
+}
+.below-bar {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: left;
   align-items: stretch;
 }
 .main-container {
@@ -77,6 +86,9 @@ function showSettings() {
 }
 .main-column {
   min-width: 18rem;
+  padding: 1rem 1rem 1rem 1rem;
+}
+.skills-column {
   padding: 1rem 1rem 1rem 1rem;
 }
 .info-column {

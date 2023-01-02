@@ -31,15 +31,18 @@ pub enum IconType {
     Fighting,
     Alchemy,
     Conversation,
-    Play,
+    //
     Collection,
     Exploration,
+    Play,
     Schedule,
     Clock,
     Health,
     HealthDrain,
-    Mana,
+    Mana, // Custom
     ManaDrain,
+    //
+    Automation,
     Priority0,
     Priority1,
     Priority2,
@@ -53,7 +56,6 @@ pub enum IconType {
     Lock,
     Infinity,
     Settings,
-    Automation,
     History,
     Save,
     // Load,
@@ -65,8 +67,7 @@ pub enum IconType {
     //
     Shield,
     MagicWand,
-    //Custom
-    Crystal,
+    Crystal, // Custom
 }
 
 impl From<IconType> for Icon {
@@ -117,7 +118,7 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         IconType::Clock => "clock",
         IconType::Health => "hearth",
         IconType::HealthDrain => "heart-crack",
-        IconType::Mana => "crystal",
+        IconType::Mana => "big-crystal",
         IconType::ManaDrain => "bolt",
         IconType::Priority0 => "gauge-min",
         IconType::Priority1 => "gauge-low",
@@ -158,7 +159,7 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         //
         IconType::Shield => "shield-halved",
         IconType::MagicWand => "wand-sparkles",
-        IconType::Crystal => "list-old-style",
+        IconType::Crystal => "crystal",
     }
 }
 

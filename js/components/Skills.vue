@@ -2,9 +2,14 @@
   <div class="skill-container">
     <div v-for="skill in skills" :key="skill.name" class="skill-box">
       <SkillPopper :skill="skill" class="skill-box2">
-        <div class="text-box">
-          <my-icon :icon="skill.icon" />
-          {{ skill.name }} {{ skill.level }}
+        <div class="between-flex">
+          <div class="skill-name">
+            <my-icon :icon="skill.icon">
+              {{ skill.name }}
+            </my-icon>
+          </div>
+          <span>{{ skill.level }}</span> -
+          <span style="margin-right: 0.4rem"> {{ skill.talent }} </span>
         </div>
         <MyProgressBar class="skill-progress" :value="skill.level_percent" />
         <MyProgressBar
@@ -34,14 +39,15 @@ let skills = computed(() =>
 <style scoped>
 .skill-container {
   display: flex;
-  flex-grow: 1;
-  flex-basis: 0;
+  flex-direction: column;
+}
+.skill-name {
+  min-width: 9rem;
+  padding-left: 0.4rem;
 }
 .skill-box {
-  border: 1px solid white;
-  flex-grow: 1;
-  flex-basis: 0;
-  min-width: 10rem;
+  min-width: 14rem;
+  /* border: 1px solid white; */
 }
 .skill-box2 {
   flex-grow: 1;
@@ -49,12 +55,15 @@ let skills = computed(() =>
   display: flex;
   flex-direction: column;
   gap: 1px;
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
+  margin: 0.5rem;
 }
 .skill-progress {
   margin-bottom: 0.1rem;
 }
+/* .skill-text { */
+/* padding-left: 0.2rem; */
+/* padding-right: 0.2rem; */
+/* } */
 .text-box {
   display: flex;
   justify-content: center;

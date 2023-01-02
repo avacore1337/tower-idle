@@ -18,7 +18,7 @@ export function add_custom_icons() {
 
   let crystal: IconDefinition = {
     prefix: "fac" as IconPrefix,
-    iconName: "small-crystal" as IconName,
+    iconName: "crystal" as IconName,
     icon: [
       1000,
       1000,
@@ -32,7 +32,7 @@ export function add_custom_icons() {
 
   let big_crystal: IconDefinition = {
     prefix: "fac" as IconPrefix,
-    iconName: "crystal" as IconName,
+    iconName: "big-crystal" as IconName,
     icon: [
       256,
       256,
