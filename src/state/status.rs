@@ -17,9 +17,10 @@ pub struct Status {
     pub reincarnation: u32,
     pub waiting: bool,
     pub auto_rebirth: bool,
+    pub override_automatable: bool,
 }
 
-const BASE_STARTING_HEALTH: f64 = 10.0;
+const BASE_STARTING_HEALTH: f64 = 100.0;
 
 impl Status {
     pub fn new() -> Status {
@@ -36,6 +37,7 @@ impl Status {
             reincarnation: 0,
             waiting: false,
             auto_rebirth: false,
+            override_automatable: false,
         }
     }
 
@@ -45,11 +47,13 @@ impl Status {
     }
 
     pub fn calculate_starting_health(&mut self, old_status: &Status) {
-        self.playtime_health_earned = old_status.playtime_health_earned;
-        self.playtime_health_earned += old_status.max_health - old_status.starting_health;
-        self.starting_health = BASE_STARTING_HEALTH + self.playtime_health_earned / 20.0;
-        self.max_health = self.starting_health;
-        self.current_health = self.starting_health;
+        self.max_health = old_status.max_health;
+        self.current_health = old_status.max_health;
+        // self.playtime_health_earned = old_status.playtime_health_earned;
+        // self.playtime_health_earned += old_status.max_health - old_status.starting_health;
+        // self.starting_health = BASE_STARTING_HEALTH + self.playtime_health_earned / 20.0;
+        // self.max_health = self.starting_health;
+        // self.current_health = self.starting_health;
     }
 }
 

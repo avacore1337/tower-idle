@@ -3,6 +3,7 @@
     <div class="between-flex">
       <div class="i-skill">
         <my-icon :icon="item.icon" />
+        <my-icon v-if="item.collect && item.collect.Mana" :icon="icons['Mana']" />
       </div>
       <div class="i-name">
         <ActionPopper :item="item" />

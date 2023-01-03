@@ -44,7 +44,7 @@ fn make_almost_automated_start() -> GameSave {
 pub fn make_automated_start() -> GameSave {
     let mut game_save = GameSave::default();
     let state = &mut game_save.state;
-    set_all_floors_to_automatable(state);
+    override_automatable(state);
     game_save
 }
 

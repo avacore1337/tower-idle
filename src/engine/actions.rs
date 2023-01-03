@@ -125,7 +125,10 @@ pub fn collect_action(game: &mut Game, collection: AllCollects) -> ActionResult 
         collection.current_xp = 0.0;
         match wcollection.collect {
             Collect::Item(item) => game.state.items[item as usize].amount += 1,
-            Collect::Mana(amount) => game.state.status.add_health(amount),
+            Collect::Mana(amount) => game
+                .state
+                .status
+                .add_health(amount / (1.0 + (f64::sqrt(collection.completion_count as f64) / 4.0))),
         }
         collection.completion_percentage = 0.0;
         collection.add_completion(1);

@@ -57,7 +57,7 @@ pub fn get_first_floor_collections() -> Vec<WCollection> {
                 skill: SkillTypes::Agility,
                 required_xp: 5.0,
                 icon: IconType::Agility.into(),
-                collect: Collect::Mana(0.5),
+                collect: Collect::Mana(1.0),
                 max_completions: Some(30),
                 automate_limit: 90,
             },
@@ -101,7 +101,7 @@ pub fn get_first_floor_collections() -> Vec<WCollection> {
                 skill: SkillTypes::Agility,
                 required_xp: 15.0,
                 icon: IconType::Agility.into(),
-                collect: Collect::Mana(1.5),
+                collect: Collect::Mana(3.0),
                 max_completions: Some(5),
                 automate_limit: 20,
             },
@@ -296,6 +296,9 @@ pub fn should_be_visible_collection(collection_type: AllCollects, game: &Game) -
 }
 
 pub fn should_be_automatable_collection(collection_type: AllCollects, game: &Game) -> bool {
+    if game.state.status.override_automatable {
+        return true;
+    }
     let wcollection = game.world.get_wcollection(collection_type);
     let collection = game.state.get_collection(collection_type);
     collection.completion_count >= wcollection.automate_limit

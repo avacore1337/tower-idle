@@ -25,6 +25,7 @@ fn exploration_completed(game: &Game, exploration: AllExplors) -> bool {
 fn test_first_run() {
     let game = &mut Game::new();
     game.load_game(make_automated_start());
+    set_exploration_to(&mut game.state, F1Explors::BackToMassive.into(), 2);
     run_until_dead(game);
 
     assert_eq!(game.state.current_area, F1Areas::MassiveRoom.into());

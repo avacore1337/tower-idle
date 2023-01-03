@@ -146,11 +146,10 @@ pub fn pre_action(game: &mut Game) {
 }
 
 fn status_multipliers(game: &mut Game) {
-    let status = &game.state.status;
     game.intermediate_state.add_base(
         KeyValues::HealthDrain,
-        0.01 * 1.20_f64.powf(status.tick as f64 / TICK_RATE / 60.0),
-        "Time increased drain",
+        0.20 * 2.0_f64.powf(game.state.current_floor as u64 as f64),
+        "level drain",
     );
 }
 

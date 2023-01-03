@@ -63,6 +63,9 @@ impl WCrafting {
 }
 
 pub fn should_be_automatable_crafting(crafting_type: AllCrafts, game: &Game) -> bool {
+    if game.state.status.override_automatable {
+        return true;
+    }
     let crafting = game.state.get_crafting(crafting_type);
     let wcrafting = game.world.get_wcrafting(crafting_type);
     crafting.completion_count >= wcrafting.automate_limit

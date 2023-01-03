@@ -3,7 +3,8 @@
 use crate::engine::engine_run;
 use crate::game::Game;
 use crate::state::State;
-use crate::{types::*, WORLD};
+use crate::types::*;
+// use crate::WORLD;
 
 // use strum::IntoEnumIterator;
 
@@ -38,8 +39,8 @@ pub fn set_talent(state: &mut State, skill_type: SkillTypes, amount: f64) {
 
 pub fn set_collection_on_floor_to_automatable(state: &mut State, floor_index: usize) {
     for collection in &mut state.floors[floor_index].collections {
-        let wcollection = WORLD.get_wcollection(collection.name);
-        collection.completion_count = wcollection.automate_limit;
+        // let wcollection = WORLD.get_wcollection(collection.name);
+        // collection.completion_count = wcollection.automate_limit;
         collection.is_automatable = true;
         collection.has_seen = true;
     }
@@ -47,8 +48,8 @@ pub fn set_collection_on_floor_to_automatable(state: &mut State, floor_index: us
 
 pub fn set_crafting_on_floor_to_automatable(state: &mut State, floor_index: usize) {
     for crafting in &mut state.floors[floor_index].craftings {
-        let wcrafting = WORLD.get_wcrafting(crafting.name);
-        crafting.completion_count = wcrafting.automate_limit;
+        // let wcrafting = WORLD.get_wcrafting(crafting.name);
+        // crafting.completion_count = wcrafting.automate_limit;
         crafting.is_automatable = true;
         crafting.has_seen = true;
     }
@@ -56,8 +57,8 @@ pub fn set_crafting_on_floor_to_automatable(state: &mut State, floor_index: usiz
 
 pub fn set_exploration_on_floor_to_automatable(state: &mut State, floor_index: usize) {
     for exploration in &mut state.floors[floor_index].explorations {
-        let wexploration = WORLD.get_wexploration(exploration.name);
-        exploration.completion_count = wexploration.automate_limit;
+        // let wexploration = WORLD.get_wexploration(exploration.name);
+        // exploration.completion_count = wexploration.automate_limit;
         exploration.is_automatable = true;
         exploration.has_seen = true;
     }
@@ -70,6 +71,12 @@ pub fn set_floor_to_automatable(state: &mut State, floor_index: usize) {
     set_exploration_on_floor_to_automatable(state, floor_index);
     tune_floor_priority(state, floor_index);
 }
+
+pub fn override_automatable(state: &mut State) {
+    state.status.override_automatable = true;
+    set_all_floors_to_automatable(state);
+}
+
 pub fn set_all_floors_to_automatable(state: &mut State) {
     set_up_to_floor_to_automatable(state, FLOOR_SIZE - 1);
 }

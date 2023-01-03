@@ -47,6 +47,6 @@ export function recurse_update(o: any, o2: any) {
 }
 
 export function icon_name(icon: Icon) {
-  console.log(icon.prefix + " fa-" + icon.name)
+  /* console.log(icon.prefix + " fa-" + icon.name) */
   return icon.prefix + " fa-" + icon.name
 }

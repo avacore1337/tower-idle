@@ -163,7 +163,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                     "The door is blocked, but given enough time you can probably break it down",
                 story_line: "",
                 skill: SkillTypes::Woodcutting,
-                required_xp: 700.0,
+                required_xp: 600.0,
                 dps: 0.0,
                 is_reenterable: false,
                 icon: IconType::Agility.into(),
@@ -553,6 +553,9 @@ pub fn get_third_floor_explorations() -> Vec<WExploration> {
 }
 
 pub fn should_be_automatable_exploration(exploration_type: AllExplors, game: &Game) -> bool {
+    if game.state.status.override_automatable {
+        return true;
+    }
     let exploration = game.state.get_exploration(exploration_type);
     let wexploration = game.world.get_wexploration(exploration_type);
     exploration.completion_count >= wexploration.automate_limit

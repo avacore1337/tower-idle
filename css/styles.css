@@ -159,6 +159,8 @@ body {
   gap: 1px;
 }
 .i-skill {
+  display: flex;
+
   min-width: 3rem;
   text-align: left;
 }
