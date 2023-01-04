@@ -1,9 +1,9 @@
 use crate::game::GameSave;
-use crate::state::rebirth;
 use crate::types::*;
 use crate::util::*;
 use crate::WORLD;
 use std::collections::BTreeMap;
+// use crate::state::rebirth;
 
 // use strum::IntoEnumIterator;
 
@@ -53,6 +53,7 @@ pub fn make_f2() -> GameSave {
     let mut game_save = GameSave::default();
     let state = &mut game_save.state;
     set_floor_to_automatable(state, 0);
+    get_mana_for_floor(state, 0);
     set_talent(state, SkillTypes::Agility, 12.0);
     set_talent(state, SkillTypes::Woodcutting, 16.0);
     set_talent(state, SkillTypes::Crafting, 8.0);
@@ -65,6 +66,8 @@ fn make_f3() -> GameSave {
     let mut game_save = GameSave::default();
     let state = &mut game_save.state;
     set_up_to_floor_to_automatable(state, 1);
+    get_mana_for_floor(state, 0);
+    get_mana_for_floor(state, 1);
     set_talent(state, SkillTypes::Agility, 25.0);
     set_talent(state, SkillTypes::Woodcutting, 30.0);
     set_talent(state, SkillTypes::Mining, 25.0);
