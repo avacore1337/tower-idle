@@ -85,6 +85,7 @@ pub fn get_map_for_floor(val: &JsValue) -> JsValue {
 pub fn toggle_priority_exploration(val: &JsValue) {
     info!("Rust toggle priority exploration");
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
+    got_user_input(game);
     let t: AllExplors = val.into_serde().unwrap();
     let x = game.state.get_mut_exploration(t);
     x.priority = (x.priority + 1) % 5;
@@ -94,6 +95,7 @@ pub fn toggle_priority_exploration(val: &JsValue) {
 pub fn toggle_priority_collection(val: &JsValue) {
     info!("Rust toggle priority collection");
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
+    got_user_input(game);
     let t: AllCollects = val.into_serde().unwrap();
     let x = game.state.get_mut_collection(t);
     x.priority = (x.priority + 1) % 5;
@@ -103,9 +105,14 @@ pub fn toggle_priority_collection(val: &JsValue) {
 pub fn toggle_priority_crafting(val: &JsValue) {
     info!("Rust toggle priority crafting");
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
+    got_user_input(game);
     let t: AllCrafts = val.into_serde().unwrap();
     let x = game.state.get_mut_crafting(t);
     x.priority = (x.priority + 1) % 5;
+}
+
+pub fn got_user_input(game: &mut Game) {
+    game.state.status.waiting = false;
 }
 
 #[wasm_bindgen]
