@@ -28,15 +28,6 @@ impl Floor {
             craftings: get_craftings(floor),
         }
     }
-
-    // pub fn get_exploration_index(&mut self, name: &'static str) -> usize {
-    //     for (i, exploration) in self.explorations.iter().enumerate() {
-    //         if exploration.name == name {
-    //             return i;
-    //         }
-    //     }
-    //     panic!();
-    // }
 }
 
 pub fn get_floors() -> [Floor; FLOOR_SIZE] {

@@ -54,16 +54,16 @@ impl From<AllCrafts> for BoostTypes {
             AllCrafts::First(first) => match first {
                 F1Crafts::Axe => BoostTypes::Axe,
                 F1Crafts::Altar => BoostTypes::Altar,
-                _ => panic!(),
+                _ => panic!("Craft: {:?} can't be converted to BoostType", craft),
             },
             AllCrafts::Second(second) => match second {
                 F2Crafts::BetterAxe => BoostTypes::BetterAxe,
                 F2Crafts::Spear => BoostTypes::Spear,
                 F2Crafts::PoisonTippedSpear => BoostTypes::PoisonTippedSpear,
-                _ => panic!(),
+                _ => panic!("Craft: {:?} can't be converted to BoostType", craft),
             },
             AllCrafts::Third(third) => match third {
-                _ => panic!(),
+                _ => panic!("Craft: {:?} can't be converted to BoostType", craft),
             },
         }
     }
@@ -153,7 +153,7 @@ impl From<F1Collects> for ItemTypes {
             F1Collects::Rock => ItemTypes::Stone,
             F1Collects::Wood => ItemTypes::Wood,
             F1Collects::Crystal => ItemTypes::Crystal,
-            _ => panic!(),
+            _ => panic!("Collection: {:?} can't be converted to ItemType", collection),
         }
     }
 }
@@ -166,7 +166,7 @@ impl From<F2Collects> for ItemTypes {
             F2Collects::Flint => ItemTypes::Flint,
             F2Collects::Log => ItemTypes::Log,
             F2Collects::Fur => ItemTypes::Fur,
-            _ => panic!(),
+            _ => panic!("Collection: {:?} can't be converted to ItemType", collection),
         }
     }
 }
@@ -175,7 +175,7 @@ impl From<F3Collects> for ItemTypes {
     fn from(collection: F3Collects) -> Self {
         match collection {
             // F3Collects::Test => ItemTypes::Stick,
-            _ => panic!(),
+            _ => panic!("Collection: {:?} can't be converted to ItemType", collection),
         }
     }
 }
