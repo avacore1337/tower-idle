@@ -144,6 +144,7 @@ pub fn rebirth(state: &State) -> State {
 
     new_state.status.reincarnation = state.status.reincarnation;
     new_state.status.auto_rebirth = state.status.auto_rebirth;
+    new_state.status.override_automatable = state.status.override_automatable;
     new_state.status.calculate_starting_health(&state.status);
 
     for (i, skill) in state.skills.iter().enumerate() {

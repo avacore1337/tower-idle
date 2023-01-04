@@ -11,8 +11,14 @@ use tsify::Tsify;
 // use num_derive::FromPrimitive;
 // use num_traits::FromPrimitive;
 
-#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
+#[derive(Tsify, Serialize, Deserialize, Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub enum Craft {
+    Boost(BoostTypes),
+    Mana(f64),
+    Exploration,
+}
 
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F1Crafts {
     #[default]
     Axe,

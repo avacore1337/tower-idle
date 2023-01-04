@@ -46,6 +46,12 @@ impl Status {
         self.max_health += health;
     }
 
+    pub fn add_health_completion(&mut self, base_health: f64, completion_count: u32) {
+        let health = base_health / (1.0 + completion_count as f64 / 20.0);
+        self.current_health += health;
+        self.max_health += health;
+    }
+
     pub fn calculate_starting_health(&mut self, old_status: &Status) {
         self.max_health = old_status.max_health;
         self.current_health = old_status.max_health;

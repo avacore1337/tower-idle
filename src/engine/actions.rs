@@ -128,7 +128,7 @@ pub fn collect_action(game: &mut Game, collection: AllCollects) -> ActionResult 
             Collect::Mana(amount) => game
                 .state
                 .status
-                .add_health(amount / (1.0 + (f64::sqrt(collection.completion_count as f64) / 4.0))),
+                .add_health_completion(amount, collection.completion_count),
         }
         collection.completion_percentage = 0.0;
         collection.add_completion(1);

@@ -5,7 +5,7 @@ pub use collection::{
     SECOND_COLLECTIONS_SIZE, THIRD_COLLECTIONS_SIZE,
 };
 pub use crafting::{
-    AllCrafts, F1Crafts, F2Crafts, F3Crafts, ALL_CRAFTINGS_SIZE, FIRST_CRAFTINGS_SIZE, SECOND_CRAFTINGS_SIZE,
+    AllCrafts, Craft, F1Crafts, F2Crafts, F3Crafts, ALL_CRAFTINGS_SIZE, FIRST_CRAFTINGS_SIZE, SECOND_CRAFTINGS_SIZE,
     THIRD_CRAFTINGS_SIZE,
 };
 pub use exploration::{
@@ -46,6 +46,27 @@ pub enum BoostTypes {
     Altar,
     Spear,
     PoisonTippedSpear,
+}
+
+impl From<AllCrafts> for BoostTypes {
+    fn from(craft: AllCrafts) -> Self {
+        match craft {
+            AllCrafts::First(first) => match first {
+                F1Crafts::Axe => BoostTypes::Axe,
+                F1Crafts::Altar => BoostTypes::Altar,
+                _ => panic!(),
+            },
+            AllCrafts::Second(second) => match second {
+                F2Crafts::BetterAxe => BoostTypes::BetterAxe,
+                F2Crafts::Spear => BoostTypes::Spear,
+                F2Crafts::PoisonTippedSpear => BoostTypes::PoisonTippedSpear,
+                _ => panic!(),
+            },
+            AllCrafts::Third(third) => match third {
+                _ => panic!(),
+            },
+        }
+    }
 }
 
 #[wasm_bindgen]

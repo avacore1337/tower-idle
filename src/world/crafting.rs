@@ -24,30 +24,20 @@ pub struct WCrafting {
     pub icon: Icon,
     pub repeatable: bool,
     pub automate_limit: u32,
+    pub craft: Craft,
 }
 
 impl WCrafting {
     pub fn on_completed(&self, game: &mut Game) {
-        match self.name {
-            AllCrafts::First(First) => match First {
-                F1Crafts::CrushCrystal => {
-                    game.state.status.add_health(2.5);
-                }
-                F1Crafts::Altar => game.state.get_mut_boost(BoostTypes::Altar).unlocked = true,
-                F1Crafts::Axe => game.state.get_mut_boost(BoostTypes::Axe).unlocked = true,
-                _ => {}
-            },
-            AllCrafts::Second(Second) => match Second {
-                F2Crafts::BetterAxe => game.state.get_mut_boost(BoostTypes::BetterAxe).unlocked = true,
-                F2Crafts::Spear => game.state.get_mut_boost(BoostTypes::Spear).unlocked = true,
-                F2Crafts::PoisonTippedSpear => game.state.get_mut_boost(BoostTypes::PoisonTippedSpear).unlocked = true,
-                F2Crafts::Bridge => {}
-                F2Crafts::BuyKey => {}
-            },
-            AllCrafts::Third(Third) => match Third {
-                // F3Crafts::Test => {}
-                _ => {}
-            },
+        let collection = game.state.get_crafting(self.name);
+        match self.craft {
+            Craft::Boost(boost) => game.state.get_mut_boost(boost).unlocked = true,
+            Craft::Mana(amount) => {
+                game.state
+                    .status
+                    .add_health_completion(amount, collection.completion_count);
+            }
+            Craft::Exploration => {}
         }
     }
 
@@ -98,6 +88,7 @@ pub fn get_first_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Exploration,
             },
             F1Crafts::Axe => WCrafting {
                 name: wrapped_type,
@@ -119,6 +110,7 @@ pub fn get_first_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Boost(wrapped_type.into()),
             },
             F1Crafts::RepairAlchemy => WCrafting {
                 name: wrapped_type,
@@ -141,6 +133,7 @@ pub fn get_first_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Exploration,
             },
             F1Crafts::CrushCrystal => WCrafting {
                 name: wrapped_type,
@@ -156,6 +149,7 @@ pub fn get_first_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: true,
                 automate_limit: 100,
+                craft: Craft::Mana(2.5),
             },
             F1Crafts::Altar => WCrafting {
                 name: wrapped_type,
@@ -177,6 +171,7 @@ pub fn get_first_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Boost(wrapped_type.into()),
             },
         };
         craftings.push(crafting);
@@ -203,6 +198,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Boost(wrapped_type.into()),
             },
             F2Crafts::PoisonTippedSpear => WCrafting {
                 name: wrapped_type,
@@ -218,6 +214,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Boost(wrapped_type.into()),
             },
             F2Crafts::BetterAxe => WCrafting {
                 name: wrapped_type,
@@ -233,6 +230,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Boost(wrapped_type.into()),
             },
             F2Crafts::Bridge => WCrafting {
                 name: wrapped_type,
@@ -248,6 +246,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Exploration,
             },
             F2Crafts::BuyKey => WCrafting {
                 name: wrapped_type,
@@ -263,6 +262,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Exploration,
             },
         };
         craftings.push(crafting);
@@ -289,6 +289,7 @@ pub fn get_third_floor_craftings() -> Vec<WCrafting> {
                 icon: IconType::Crafting.into(),
                 repeatable: false,
                 automate_limit: 4,
+                craft: Craft::Exploration,
             },
         };
         craftings.push(crafting);
