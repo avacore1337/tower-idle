@@ -68,7 +68,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 story_line: "As you open the doors you see a blinding light.\n\
                     You take a step back but then brace yourself and then step into the light.\n\
                     As the doors close behind you are thrown into darkness you have one singular thought in your mind.\n\
-                    Reach the top of the tower.",
+                    Reach the top of the tower.\n You see a hallway and a door with a broken handle in front of you.",
                 skill: SkillTypes::Agility,
                 required_xp: 10.0,
                 dps: 0.0,
@@ -80,12 +80,12 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 name: wrapped_type,
                 display_name: "Hallway",
                 description: "A long and dark hallway",
-                story_line: "You slowly explore the hallway, expecting something to jump out at you at any moment",
+                story_line: "You slowly explore the hallway, expecting something to jump out at you at any moment.",
                 skill: SkillTypes::Agility,
                 required_xp: 20.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                explore: Explore::Advance(F1Areas::Hallway.into()),
+                explore: Explore::Explore,
                 automate_limit: 4,
             },
             F1Explors::BrokenHandle => WExploration {
@@ -146,6 +146,18 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 dps: 0.0,
                 icon: IconType::Agility.into(),
                 explore: Explore::Advance(F1Areas::MassiveRoom.into()),
+                automate_limit: 4,
+            },
+            F1Explors::RuneDoor => WExploration {
+                name: wrapped_type,
+                display_name: "Rune door",
+                description: "A door with runes all around it.",
+                story_line: "",
+                skill: SkillTypes::Arcana,
+                required_xp: 40.0,
+                dps: 0.0,
+                icon: IconType::Arcana.into(),
+                explore: Explore::Explore,
                 automate_limit: 4,
             },
             F1Explors::BlockedDoor => WExploration {

@@ -67,6 +67,7 @@ pub enum IconType {
     //
     Shield,
     MagicWand,
+    Arcana,
     Crystal, // Custom
     Branch,
     Upload,
@@ -162,6 +163,7 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         //
         IconType::Shield => "shield-halved",
         IconType::MagicWand => "wand-sparkles",
+        IconType::Arcana => "hat-wizard",
         IconType::Crystal => "crystal",
         IconType::Branch => "code-branch",
         IconType::Upload => "upload",

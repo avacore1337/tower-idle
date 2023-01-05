@@ -25,17 +25,18 @@ pub mod exploration;
 #[wasm_bindgen]
 #[derive(Serialize, Deserialize, EnumIter, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum SkillTypes {
-    Woodcutting,
-    Crafting,
     Agility,
-    Alchemy,
+    Woodcutting,
     Mining,
+    Crafting,
+    Alchemy,
+    Arcana,
     Fighting,
+    Hunting,
+    Conversation,
     Farming,
     Fishing,
     Cooking,
-    Hunting,
-    Conversation,
 }
 
 #[wasm_bindgen]

@@ -9,7 +9,6 @@ pub enum F1Areas {
     #[default]
     Outside,
     TowerEntrance,
-    Hallway,
     BrokenHandle,
     MassiveRoom,
     SideDoor,

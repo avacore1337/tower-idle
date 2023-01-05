@@ -54,9 +54,15 @@ pub fn translate_skill(skill: SkillTypes) -> WSkill {
             icon: IconType::Alchemy.into(),
             xp_req_modifier: 1.0,
         },
+        SkillTypes::Arcana => WSkill {
+            name: skill,
+            description: "The knowledge of magic.",
+            icon: IconType::Arcana.into(),
+            xp_req_modifier: 1.0,
+        },
         SkillTypes::Crafting => WSkill {
             name: skill,
-            description: "Trinkets, tables and axes. You can craft anything",
+            description: "Trinkets, tables and axes. You can craft anything.",
             icon: IconType::Crafting.into(),
             xp_req_modifier: 1.0,
         },

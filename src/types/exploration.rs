@@ -21,6 +21,7 @@ pub enum F1Explors {
     Hallway,
     BrokenHandle,
     MassiveRoom,
+    RuneDoor,
     SideDoor,
     SideArea,
     BackToMassive,

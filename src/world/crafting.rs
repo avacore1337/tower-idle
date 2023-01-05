@@ -309,7 +309,7 @@ pub fn should_be_visible_crafting(crafting_type: AllCrafts, game: &Game) -> bool
     }
     match crafting_type {
         AllCrafts::First(First) => match First {
-            F1Crafts::DoorHandle => has_explored(F1Explors::Hallway.into(), game),
+            F1Crafts::DoorHandle => has_explored(F1Explors::TowerEntrance.into(), game),
             F1Crafts::Axe => has_explored(F1Explors::SideArea.into(), game),
             F1Crafts::RepairAlchemy => has_explored(F1Explors::Laboratory.into(), game),
             F1Crafts::CrushCrystal => {

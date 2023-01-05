@@ -254,7 +254,7 @@ pub fn should_be_visible_collection(collection_type: AllCollects, game: &Game) -
             F1Collects::MagicDust => {
                 has_explored(F1Explors::Hallway.into(), game) && !has_explored(F1Explors::BlockedDoor.into(), game)
             }
-            F1Collects::MetalScrap => has_explored(F1Explors::Hallway.into(), game),
+            F1Collects::MetalScrap => has_explored(F1Explors::TowerEntrance.into(), game),
             F1Collects::Rock => {
                 has_explored(F1Explors::SideArea.into(), game) && !has_explored(F1Explors::BlockedDoor.into(), game)
             }
