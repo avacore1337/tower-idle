@@ -47,7 +47,7 @@ pub fn engine_run(game: &mut Game) {
         return;
     }
     if game.state.status.waiting && game.action_queue.is_empty() {
-        log::info!("no action and waiting");
+        // log::info!("no action and waiting");
         return;
     }
     let run_count = game.meta_data.handle_run_count();
@@ -114,7 +114,7 @@ pub fn execute_action(game: &mut Game) -> ActionResult {
             game.state.status.waiting = false;
             let mapping = game.world.action_mapping.lock().unwrap();
             let function = mapping.action_functions.get(&action.action_key).unwrap();
-            log::info!("executing action");
+            // log::info!("executing action");
             function(game)
         }
         None => {
@@ -124,7 +124,7 @@ pub fn execute_action(game: &mut Game) -> ActionResult {
                 execute_action(game)
             } else {
                 // No action was available
-                log::info!("Could not schedule action");
+                // log::info!("Could not schedule action");
                 ActionResult::Waiting
             }
         }
