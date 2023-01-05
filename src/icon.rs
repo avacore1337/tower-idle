@@ -68,6 +68,9 @@ pub enum IconType {
     Shield,
     MagicWand,
     Crystal, // Custom
+    Branch,
+    Upload,
+    Discord,
 }
 
 impl From<IconType> for Icon {
@@ -160,6 +163,9 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         IconType::Shield => "shield-halved",
         IconType::MagicWand => "wand-sparkles",
         IconType::Crystal => "crystal",
+        IconType::Branch => "code-branch",
+        IconType::Upload => "upload",
+        IconType::Discord => "discord",
     }
 }
 

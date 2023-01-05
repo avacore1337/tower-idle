@@ -45,9 +45,7 @@ function removeEscapeListener() {
 
 function handleEscape(event) {
   if (event.code == "Escape") {
-    if ($vfm.openedModals.length == 0) {
-      $vfm.show("settings")
-    }
+    $vfm.show("settings")
   }
 }
 </script>
