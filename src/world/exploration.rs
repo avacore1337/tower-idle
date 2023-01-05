@@ -15,25 +15,25 @@ pub struct WExploration {
     pub skill: SkillTypes,
     pub required_xp: f64,
     pub dps: f64,
-    pub target_area: AllAreas,
+    pub explore: Explore,
     pub icon: Icon,
     pub automate_limit: u32,
 }
 
 impl WExploration {
     pub fn on_completed(&self, game: &mut Game) {
-        game.state.current_area = self.target_area;
         if self.story_line != "" {
             game.state.messages.push(self.story_line.to_string())
         }
-        match self.name {
-            AllExplors::First(F1Explors::Stairs) => {
-                game.state.set_current_floor(FloorTypes::Second);
+        match self.explore {
+            Explore::Advance(target_area) => {
+                game.state.current_area = target_area;
             }
-            AllExplors::Second(F2Explors::Stairs2) => {
-                game.state.set_current_floor(FloorTypes::Third);
+            Explore::Stair(target_area) => {
+                game.state.current_area = target_area;
+                game.state.set_current_floor(target_area.into());
             }
-            _ => (),
+            _ => {}
         }
     }
 
@@ -73,7 +73,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 10.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::TowerEntrance.into(),
+                explore: Explore::Advance(F1Areas::TowerEntrance.into()),
                 automate_limit: 4,
             },
             F1Explors::Hallway => WExploration {
@@ -85,7 +85,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 20.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::Hallway.into(),
+                explore: Explore::Advance(F1Areas::Hallway.into()),
                 automate_limit: 4,
             },
             F1Explors::BrokenHandle => WExploration {
@@ -97,7 +97,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 20.0,
                 dps: 0.0,
                 icon: IconType::Crafting.into(),
-                target_area: F1Areas::BrokenHandle.into(),
+                explore: Explore::Advance(F1Areas::BrokenHandle.into()),
                 automate_limit: 4,
             },
             F1Explors::MassiveRoom => WExploration {
@@ -109,7 +109,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 30.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::MassiveRoom.into(),
+                explore: Explore::Advance(F1Areas::MassiveRoom.into()),
                 automate_limit: 4,
             },
             F1Explors::SideDoor => WExploration {
@@ -121,7 +121,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 40.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::SideDoor.into(),
+                explore: Explore::Advance(F1Areas::SideDoor.into()),
                 automate_limit: 4,
             },
             F1Explors::SideArea => WExploration {
@@ -133,7 +133,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 40.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::SideArea.into(),
+                explore: Explore::Advance(F1Areas::SideArea.into()),
                 automate_limit: 4,
             },
             F1Explors::BackToMassive => WExploration {
@@ -145,7 +145,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 30.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::MassiveRoom.into(),
+                explore: Explore::Advance(F1Areas::MassiveRoom.into()),
                 automate_limit: 4,
             },
             F1Explors::BlockedDoor => WExploration {
@@ -158,7 +158,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 600.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::BlockedDoor.into(),
+                explore: Explore::Advance(F1Areas::BlockedDoor.into()),
                 automate_limit: 4,
             },
             F1Explors::Laboratory => WExploration {
@@ -170,7 +170,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 100.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F1Areas::Laboratory.into(),
+                explore: Explore::Advance(F1Areas::Laboratory.into()),
                 automate_limit: 4,
             },
             F1Explors::Shrine => WExploration {
@@ -182,7 +182,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 400.0,
                 dps: 0.0,
                 icon: IconType::Alchemy.into(),
-                target_area: F1Areas::Shrine.into(),
+                explore: Explore::Advance(F1Areas::Shrine.into()),
                 automate_limit: 4,
             },
             F1Explors::Stairs => WExploration {
@@ -196,7 +196,7 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
                 required_xp: 50.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::StairWell.into(),
+                explore: Explore::Stair(F2Areas::default().into()),
                 automate_limit: 4,
             },
         };
@@ -219,7 +219,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 50.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::WideHallway.into(),
+                explore: Explore::Advance(F2Areas::WideHallway.into()),
                 automate_limit: 4,
             },
             F2Explors::ExploreHallway => WExploration {
@@ -232,7 +232,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 50.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::ExploreHallway.into(),
+                explore: Explore::Advance(F2Areas::ExploreHallway.into()),
                 automate_limit: 4,
             },
             F2Explors::FightWolf => WExploration {
@@ -244,7 +244,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 20.0,
                 dps: 0.5,
                 icon: IconType::Fighting.into(),
-                target_area: F2Areas::FightWolf.into(),
+                explore: Explore::Advance(F2Areas::FightWolf.into()),
                 automate_limit: 4,
             },
             F2Explors::Laboratory => WExploration {
@@ -256,7 +256,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 100.0,
                 dps: 0.0,
                 icon: IconType::Alchemy.into(),
-                target_area: F2Areas::Laboratory.into(),
+                explore: Explore::Advance(F2Areas::Laboratory.into()),
                 automate_limit: 4,
             },
             F2Explors::Intersection => WExploration {
@@ -268,7 +268,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 50.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::Intersection.into(),
+                explore: Explore::Advance(F2Areas::Intersection.into()),
                 automate_limit: 4,
             },
             F2Explors::Crawl => WExploration {
@@ -280,7 +280,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 200.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::Crawl.into(),
+                explore: Explore::Advance(F2Areas::Crawl.into()),
                 automate_limit: 4,
             },
             F2Explors::Jump => WExploration {
@@ -292,7 +292,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 400.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::Jump.into(),
+                explore: Explore::Advance(F2Areas::Jump.into()),
                 automate_limit: 4,
             },
             F2Explors::RabbitKing => WExploration {
@@ -304,7 +304,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 40.0,
                 dps: 1.0,
                 icon: IconType::Fighting.into(),
-                target_area: F2Areas::RabbitKing.into(),
+                explore: Explore::Advance(F2Areas::RabbitKing.into()),
                 automate_limit: 4,
             },
             F2Explors::RabbitHorde => WExploration {
@@ -316,7 +316,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 600.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::RabbitHorde.into(),
+                explore: Explore::Advance(F2Areas::RabbitHorde.into()),
                 automate_limit: 4,
             },
             F2Explors::ChopForward => WExploration {
@@ -328,7 +328,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 600.0,
                 dps: 0.0,
                 icon: IconType::Woodcutting.into(),
-                target_area: F2Areas::ChopForward.into(),
+                explore: Explore::Advance(F2Areas::ChopForward.into()),
                 automate_limit: 4,
             },
             F2Explors::RemoveDebris => WExploration {
@@ -340,7 +340,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 400.0,
                 dps: 0.0,
                 icon: IconType::Mining.into(),
-                target_area: F2Areas::RemoveDebris.into(),
+                explore: Explore::Advance(F2Areas::RemoveDebris.into()),
                 automate_limit: 4,
             },
             F2Explors::DownWithTrees => WExploration {
@@ -352,7 +352,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 800.0,
                 dps: 0.0,
                 icon: IconType::Woodcutting.into(),
-                target_area: F2Areas::DownWithTrees.into(),
+                explore: Explore::Advance(F2Areas::DownWithTrees.into()),
                 automate_limit: 4,
             },
             F2Explors::BalanceAlong => WExploration {
@@ -364,7 +364,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 800.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::BalanceAlong.into(),
+                explore: Explore::Advance(F2Areas::BalanceAlong.into()),
                 automate_limit: 4,
             },
             F2Explors::HitTheLever => WExploration {
@@ -376,7 +376,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 80.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::HitTheLever.into(),
+                explore: Explore::Advance(F2Areas::HitTheLever.into()),
                 automate_limit: 4,
             },
             F2Explors::Clearing => WExploration {
@@ -388,7 +388,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 80.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::Clearing.into(),
+                explore: Explore::Advance(F2Areas::Clearing.into()),
                 automate_limit: 4,
             },
             F2Explors::BridgeGap => WExploration {
@@ -400,7 +400,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 80.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::BridgeGap.into(),
+                explore: Explore::Advance(F2Areas::BridgeGap.into()),
                 automate_limit: 4,
             },
             F2Explors::MeetTheTrader => WExploration {
@@ -412,7 +412,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 80.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::MeetTheTrader.into(),
+                explore: Explore::Advance(F2Areas::MeetTheTrader.into()),
                 automate_limit: 4,
             },
             F2Explors::KillTrader => WExploration {
@@ -424,7 +424,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 200.0,
                 dps: 4.0,
                 icon: IconType::Fighting.into(),
-                target_area: F2Areas::KillTrader.into(),
+                explore: Explore::Advance(F2Areas::KillTrader.into()),
                 automate_limit: 4,
             },
             F2Explors::Negotiate => WExploration {
@@ -436,7 +436,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 120.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::Negotiate.into(),
+                explore: Explore::Advance(F2Areas::Negotiate.into()),
                 automate_limit: 4,
             },
             F2Explors::Argue => WExploration {
@@ -448,7 +448,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 180.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::Argue.into(),
+                explore: Explore::Advance(F2Areas::Argue.into()),
                 automate_limit: 4,
             },
             F2Explors::Haggle => WExploration {
@@ -460,7 +460,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 300.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::Haggle.into(),
+                explore: Explore::Advance(F2Areas::Haggle.into()),
                 automate_limit: 4,
             },
             F2Explors::UnlockStairs => WExploration {
@@ -472,7 +472,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 200.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::UnlockStairs.into(),
+                explore: Explore::Advance(F2Areas::UnlockStairs.into()),
                 automate_limit: 4,
             },
             F2Explors::Stairs2 => WExploration {
@@ -484,7 +484,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 200.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F3Areas::Test.into(),
+                explore: Explore::Stair(F3Areas::default().into()),
                 automate_limit: 4,
             },
         };
@@ -507,7 +507,7 @@ pub fn get_third_floor_explorations() -> Vec<WExploration> {
                 required_xp: 50.0,
                 dps: 0.0,
                 icon: IconType::Agility.into(),
-                target_area: F2Areas::WideHallway.into(),
+                explore: Explore::Advance(F3Areas::Test.into()),
                 automate_limit: 4,
             },
         };

@@ -1,3 +1,4 @@
+use super::*;
 use super::{BasePriority, Prio, Recordable};
 use crate::world::exploration::can_explore;
 use crate::{action_queue::ActionEntry, game::Game};
@@ -6,8 +7,14 @@ use std::mem::variant_count;
 use strum::{EnumIter, IntoEnumIterator};
 use tsify::Tsify;
 
-#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
+#[derive(Tsify, Serialize, Deserialize, Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub enum Explore {
+    Explore,
+    Advance(AllAreas),
+    Stair(AllAreas),
+}
 
+#[derive(Tsify, Serialize, Deserialize, EnumIter, Default, Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub enum F1Explors {
     #[default]
     TowerEntrance,

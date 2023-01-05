@@ -9,7 +9,7 @@ pub use crafting::{
     THIRD_CRAFTINGS_SIZE,
 };
 pub use exploration::{
-    AllExplors, F1Explors, F2Explors, F3Explors, ALL_EXPLORATIONS_SIZE, FIRST_EXPLORATIONS_SIZE,
+    AllExplors, Explore, F1Explors, F2Explors, F3Explors, ALL_EXPLORATIONS_SIZE, FIRST_EXPLORATIONS_SIZE,
     SECOND_EXPLORATIONS_SIZE, THIRD_EXPLORATIONS_SIZE,
 };
 use serde::{Deserialize, Serialize};
