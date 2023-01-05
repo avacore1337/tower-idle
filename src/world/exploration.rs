@@ -151,10 +151,11 @@ pub fn get_first_floor_explorations() -> Vec<WExploration> {
             F1Explors::RuneDoor => WExploration {
                 name: wrapped_type,
                 display_name: "Rune door",
-                description: "A door with runes all around it.",
+                description: "A door with runes all around it. Above it there is a text:\n\
+                    \"Only those with at least double the average persons mana shall be able to unlock this door!\"",
                 story_line: "",
                 skill: SkillTypes::Arcana,
-                required_xp: 40.0,
+                required_xp: 50.0,
                 dps: 0.0,
                 icon: IconType::Arcana.into(),
                 explore: Explore::Explore,
@@ -573,5 +574,19 @@ pub fn should_be_visible_exploration(exploration_type: AllExplors, game: &Game) 
 
 pub fn can_explore(exploration_type: AllExplors, game: &Game) -> bool {
     let exploration = game.state.get_exploration(exploration_type);
-    exploration.is_visible
+    if !exploration.is_visible {
+        return false;
+    }
+    match exploration_type {
+        AllExplors::First(first) => match first {
+            F1Explors::RuneDoor => game.state.status.max_health >= 200.0,
+            _ => true,
+        },
+        AllExplors::Second(second) => match second {
+            _ => true,
+        },
+        AllExplors::Third(third) => match third {
+            _ => true,
+        },
+    }
 }

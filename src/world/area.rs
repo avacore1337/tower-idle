@@ -43,7 +43,12 @@ pub fn get_first_floor_areas() -> Vec<WArea> {
             },
             F1Areas::MassiveRoom => WArea {
                 name: wrapped_type,
-                new_explorations: vec![E1::SideDoor.into(), E1::BlockedDoor.into(), E1::Hallway.into()],
+                new_explorations: vec![
+                    E1::SideDoor.into(),
+                    E1::BlockedDoor.into(),
+                    E1::Hallway.into(),
+                    E1::RuneDoor.into(),
+                ],
             },
             F1Areas::SideDoor => WArea {
                 name: wrapped_type,
