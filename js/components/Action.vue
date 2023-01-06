@@ -4,7 +4,7 @@
       <div class="i-skill">
         <my-icon :icon="item.icon" />
         <my-icon v-if="item.collect && item.collect.Mana" :icon="icons['Mana']" />
-        <my-icon v-if="item.dps" :icon="icons['ManaDrain']" />
+        <my-icon v-if="item.damage && item.damage.Dps" :icon="icons['ManaDrain']" />
       </div>
       <div class="i-name">
         <ActionPopper :item="item" />

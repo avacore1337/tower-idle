@@ -14,9 +14,9 @@ pub fn explore_action(game: &mut Game, exploration: AllExplors) -> ActionResult 
     let wexploration = game.world.get_wexploration(exploration);
     let skill = wexploration.skill;
     game.state.current_skill = skill;
-    if wexploration.dps > 0.0 {
+    if let Damage::Dps(dps) = wexploration.damage {
         game.intermediate_state
-            .add_base(KeyValues::HealthDrain, wexploration.dps, "Exploration damage");
+            .add_base(KeyValues::HealthDrain, dps, "Exploration damage");
     }
     general_action(game); // Health Update
     let floor_index = FloorTypes::from(exploration) as usize;

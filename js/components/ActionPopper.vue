@@ -19,9 +19,9 @@
             <span class="data_key">round completions:</span>
             <span class="data">{{ item.round_completions }} / {{ item.max_completions }}</span>
           </div>
-          <div v-if="item.dps" class="between-flex">
+          <div v-if="item.damage && item.damage.Dps" class="between-flex">
             <span class="data_key"> Mana lost per second: </span>
-            <span class="data"> {{ item.dps }} </span>
+            <span class="data"> {{ item.damage.Dps }} </span>
           </div>
           <div v-if="item.materials">
             Crafting materials needed:

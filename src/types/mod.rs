@@ -15,12 +15,21 @@ pub use exploration::{
 use serde::{Deserialize, Serialize};
 use std::{cmp::Ordering, mem::variant_count};
 use strum::EnumIter;
+use tsify::Tsify;
 use wasm_bindgen::prelude::*;
 
 pub mod area;
 pub mod collection;
 pub mod crafting;
 pub mod exploration;
+
+#[derive(Tsify, Serialize, Deserialize, Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub enum Damage {
+    None,
+    Dps(f64),
+    Start(f64),
+    End(f64),
+}
 
 #[wasm_bindgen]
 #[derive(Serialize, Deserialize, EnumIter, Clone, Copy, Debug, PartialEq, PartialOrd)]
