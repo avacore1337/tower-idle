@@ -5,6 +5,9 @@
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
+pub fn toggle_override_automatable() {}
+
+#[wasm_bindgen]
 pub fn toggle_auto_rebirth() {}
 
 #[wasm_bindgen]

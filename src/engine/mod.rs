@@ -283,7 +283,7 @@ fn update_status(game: &mut Game) {
     }
 }
 
-fn death_update(game: &mut Game) {
+pub fn death_update(game: &mut Game) {
     log::info!("Doing death update");
     game.history.pre_death_clear();
     for collection in AllCollects::iter() {

@@ -3,7 +3,7 @@
 #![allow(unused_imports)]
 
 use all_asserts::{assert_ge, assert_le};
-use tower::engine::do_rebirth_internal;
+use tower::engine::{death_update, do_rebirth_internal};
 use tower::game::Game;
 use tower::presets::make_f2;
 use tower::types::*;
@@ -19,6 +19,7 @@ fn exploration_completed(game: &Game, exploration: AllExplors) -> bool {
 fn preset_check() {
     let game = &mut Game::new();
     game.load_game(make_f2());
+    death_update(game);
     set_all_floors_to_automatable(&mut game.state);
     run_until_dead(game);
 
@@ -40,15 +41,16 @@ fn preset_check() {
 //     assert!(exploration_completed(game, F1Explors::BlockedDoor.into()));
 // }
 
-// #[wasm_bindgen_test]
-// fn test_completion_time() {
-//     let game = &mut Game::new();
-//     game.load_game(make_automated_start());
-//     while game.state.current_floor == FloorTypes::Starting {
-//         do_rebirth_internal(game);
-//         run_until_dead(game);
-//     }
+#[wasm_bindgen_test]
+fn test_completion_time() {
+    let game = &mut Game::new();
+    game.load_game(make_f2());
+    set_all_floors_to_automatable(&mut game.state);
+    while game.state.current_floor != FloorTypes::Third {
+        do_rebirth_internal(game);
+        run_until_dead(game);
+    }
 
-//     assert_le!(game.state.status.reincarnation, 8);
-//     assert_ge!(game.state.status.reincarnation, 5);
-// }
+    assert_le!(game.state.status.reincarnation, 10);
+    assert_ge!(game.state.status.reincarnation, 7);
+}

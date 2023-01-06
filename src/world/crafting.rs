@@ -240,7 +240,7 @@ pub fn get_second_floor_craftings() -> Vec<WCrafting> {
                     item: ItemTypes::Log,
                     amount: 1,
                 }],
-                segments_needed: 10,
+                segments_needed: 20,
                 skill: SkillTypes::Crafting,
                 required_xp: 500.0,
                 icon: IconType::Crafting.into(),
@@ -320,7 +320,9 @@ pub fn should_be_visible_crafting(crafting_type: AllCrafts, game: &Game) -> bool
         },
         AllCrafts::Second(Second) => match Second {
             F2Crafts::Spear => has_explored(F2Explors::ExploreHallway.into(), game),
-            F2Crafts::PoisonTippedSpear => has_explored(F2Explors::Laboratory.into(), game),
+            F2Crafts::PoisonTippedSpear => {
+                has_explored(F2Explors::Laboratory.into(), game) && !has_explored(F2Explors::Intersection.into(), game)
+            }
             F2Crafts::BetterAxe => has_explored(F2Explors::RemoveDebris.into(), game),
             F2Crafts::Bridge => has_explored(F2Explors::Clearing.into(), game),
             F2Crafts::BuyKey => has_explored(F2Explors::Haggle.into(), game),

@@ -35,6 +35,10 @@
         <br />
         Auto rebirth
       </MyToggle>
+      <MyToggle :value="world.status.override_automatable" :click="wasm.toggle_override_automatable">
+        <br />
+        Override Automateable
+      </MyToggle>
       <hr />
       <div>
         <div class="column-flex debug-printing">

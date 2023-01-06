@@ -40,20 +40,14 @@ pub fn set_talent(state: &mut State, skill_type: SkillTypes, amount: f64) {
 pub fn set_floor_to_automatable(state: &mut State, floor_index: usize) {
     state.floors[floor_index].has_seen = true;
     for collection in &mut state.floors[floor_index].collections {
-        // let wcollection = WORLD.get_wcollection(collection.name);
-        // collection.completion_count = wcollection.automate_limit;
         collection.is_automatable = true;
         collection.has_seen = true;
     }
     for crafting in &mut state.floors[floor_index].craftings {
-        // let wcrafting = WORLD.get_wcrafting(crafting.name);
-        // crafting.completion_count = wcrafting.automate_limit;
         crafting.is_automatable = true;
         crafting.has_seen = true;
     }
     for exploration in &mut state.floors[floor_index].explorations {
-        // let wexploration = WORLD.get_wexploration(exploration.name);
-        // exploration.completion_count = wexploration.automate_limit;
         exploration.is_automatable = true;
         exploration.has_seen = true;
     }
@@ -97,7 +91,11 @@ pub fn tune_floor_priority(state: &mut State, floor_index: usize) {
                 set_crafting_to(state, F1Crafts::RepairAlchemy.into(), 4);
                 set_crafting_to(state, F1Crafts::CrushCrystal.into(), 4);
             }
-            1 => {}
+            1 => {
+                set_exploration_to(state, F2Explors::Laboratory.into(), 0);
+                set_exploration_to(state, F2Explors::Crawl.into(), 4);
+                set_exploration_to(state, F2Explors::KillTrader.into(), 0);
+            }
             2 => {}
             _ => {}
         },

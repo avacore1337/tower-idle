@@ -81,6 +81,9 @@ fn make_f3() -> GameSave {
 fn make_f4() -> GameSave {
     let mut game_save = GameSave::default();
     let state = &mut game_save.state;
+    get_mana_for_floor(state, 0);
+    get_mana_for_floor(state, 1);
+    get_mana_for_floor(state, 2);
     set_up_to_floor_to_automatable(state, 2);
     set_talent(state, SkillTypes::Agility, 40.0);
     set_talent(state, SkillTypes::Woodcutting, 40.0);

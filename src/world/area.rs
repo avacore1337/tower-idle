@@ -1,5 +1,5 @@
 use crate::types::*;
-use crate::types::{AllExplors, F1Explors as E1, F2Explors as E2};
+use crate::types::{AllExplors, F1Explors as E1, F2Explors as E2, F3Explors as E3};
 use serde::Serialize;
 use strum::IntoEnumIterator;
 use tsify::Tsify;
@@ -174,7 +174,7 @@ pub fn get_third_floor_areas() -> Vec<WArea> {
         let area = match area_type {
             F3Areas::Test => WArea {
                 name: wrapped_type,
-                new_explorations: vec![E2::WideHallway.into()],
+                new_explorations: vec![E3::Test.into()],
             },
         };
         areas.push(area);
