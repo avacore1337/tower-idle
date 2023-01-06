@@ -245,7 +245,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 50.0,
                 damage: Damage::None,
                 icon: IconType::Agility.into(),
-                explore: Explore::Advance(F2Areas::ExploreHallway.into()),
+                explore: Explore::Explore,
                 automate_limit: 4,
             },
             F2Explors::FightWolf => WExploration {
@@ -269,7 +269,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 100.0,
                 damage: Damage::None,
                 icon: IconType::Alchemy.into(),
-                explore: Explore::Advance(F2Areas::Laboratory.into()),
+                explore: Explore::Explore,
                 automate_limit: 4,
             },
             F2Explors::Intersection => WExploration {
@@ -305,7 +305,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 400.0,
                 damage: Damage::None,
                 icon: IconType::Agility.into(),
-                explore: Explore::Advance(F2Areas::Jump.into()),
+                explore: Explore::Explore,
                 automate_limit: 4,
             },
             F2Explors::RabbitKing => WExploration {
@@ -353,7 +353,7 @@ pub fn get_second_floor_explorations() -> Vec<WExploration> {
                 required_xp: 400.0,
                 damage: Damage::None,
                 icon: IconType::Mining.into(),
-                explore: Explore::Advance(F2Areas::RemoveDebris.into()),
+                explore: Explore::Explore,
                 automate_limit: 4,
             },
             F2Explors::DownWithTrees => WExploration {

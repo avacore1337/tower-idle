@@ -87,19 +87,15 @@ pub fn get_second_floor_areas() -> Vec<WArea> {
             },
             F2Areas::WideHallway => WArea {
                 name: wrapped_type,
-                new_explorations: vec![E2::ExploreHallway.into()],
-            },
-            F2Areas::ExploreHallway => WArea {
-                name: wrapped_type,
-                new_explorations: vec![E2::FightWolf.into()],
+                new_explorations: vec![E2::ExploreHallway.into(), E2::FightWolf.into()],
             },
             F2Areas::FightWolf => WArea {
                 name: wrapped_type,
-                new_explorations: vec![E2::Laboratory.into()],
-            },
-            F2Areas::Laboratory => WArea {
-                name: wrapped_type,
-                new_explorations: vec![E2::Intersection.into()],
+                new_explorations: vec![
+                    E2::Laboratory.into(),
+                    E2::Intersection.into(),
+                    E2::ExploreHallway.into(),
+                ],
             },
             F2Areas::Intersection => WArea {
                 name: wrapped_type,
@@ -107,11 +103,7 @@ pub fn get_second_floor_areas() -> Vec<WArea> {
             },
             F2Areas::Crawl => WArea {
                 name: wrapped_type,
-                new_explorations: vec![E2::Jump.into()],
-            },
-            F2Areas::Jump => WArea {
-                name: wrapped_type,
-                new_explorations: vec![E2::RabbitKing.into()],
+                new_explorations: vec![E2::Jump.into(), E2::RabbitKing.into()],
             },
             F2Areas::RabbitKing => WArea {
                 name: wrapped_type,
@@ -123,11 +115,7 @@ pub fn get_second_floor_areas() -> Vec<WArea> {
             },
             F2Areas::ChopForward => WArea {
                 name: wrapped_type,
-                new_explorations: vec![E2::RemoveDebris.into()],
-            },
-            F2Areas::RemoveDebris => WArea {
-                name: wrapped_type,
-                new_explorations: vec![E2::DownWithTrees.into()],
+                new_explorations: vec![E2::RemoveDebris.into(), E2::DownWithTrees.into()],
             },
             F2Areas::DownWithTrees => WArea {
                 name: wrapped_type,
