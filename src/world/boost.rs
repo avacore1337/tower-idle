@@ -10,8 +10,10 @@ use tsify::Tsify;
 pub struct WBoost {
     pub name: BoostTypes,
     pub description: &'static str,
-    // pub effect_description: &'static str,
     pub display_name: &'static str,
+    pub key: KeyValues,
+    pub value: f64,
+    // pub effect_description: &'static str,
     // pub required_tier: u32,
     // pub xp_req_modifier: f64,
     // pub icon: Icon,
@@ -23,53 +25,47 @@ impl WBoost {
         if !boost.unlocked {
             return;
         }
-
-        let inter = &mut game.intermediate_state;
-        match self.name {
-            BoostTypes::Axe => {
-                inter.add_multiplier(KeyValues::Woodcutting, 1.5, self.display_name);
-            }
-            BoostTypes::Altar => {
-                inter.add_multiplier(KeyValues::HealthDrain, 0.5, self.display_name);
-            }
-            BoostTypes::Spear => {
-                inter.add_multiplier(KeyValues::Fighting, 1.5, self.display_name);
-            }
-            BoostTypes::PoisonTippedSpear => {
-                inter.add_multiplier(KeyValues::Fighting, 1.5, self.display_name);
-            }
-            BoostTypes::BetterAxe => {
-                inter.add_multiplier(KeyValues::Woodcutting, 1.5, self.display_name);
-            }
-        }
+        game.intermediate_state
+            .add_multiplier(self.key, self.value, self.display_name);
     }
 }
+
 pub fn translate_boost(boost: BoostTypes) -> WBoost {
     match boost {
         BoostTypes::Axe => WBoost {
             name: boost,
             description: "Boosts Woodcutting",
             display_name: "Simple Axe",
+            key: KeyValues::Woodcutting,
+            value: 1.5,
         },
         BoostTypes::Altar => WBoost {
             name: boost,
             description: "An Altar",
             display_name: "Halves Mana loss",
+            key: KeyValues::HealthDrain,
+            value: 0.5,
         },
         BoostTypes::Spear => WBoost {
             name: boost,
             description: "Spear",
             display_name: "Boosts Fighting",
+            key: KeyValues::Fighting,
+            value: 1.5,
         },
         BoostTypes::PoisonTippedSpear => WBoost {
             name: boost,
             description: "Poison Tipped Spear",
             display_name: "Boosts Fighting",
+            key: KeyValues::Fighting,
+            value: 1.5,
         },
         BoostTypes::BetterAxe => WBoost {
             name: boost,
             description: "Boosts Woodcutting even more",
             display_name: "A sharp flint Axe",
+            key: KeyValues::Woodcutting,
+            value: 1.5,
         },
     }
 }
