@@ -41,6 +41,7 @@ pub enum IconType {
     HealthDrain,
     Mana, // Custom
     ManaDrain,
+    Backpack,
     //
     Automation,
     Priority0,
@@ -124,6 +125,7 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         IconType::HealthDrain => "heart-crack",
         IconType::Mana => "big-crystal",
         IconType::ManaDrain => "bolt",
+        IconType::Backpack => "backpack",
         IconType::Priority0 => "gauge-min",
         IconType::Priority1 => "gauge-low",
         IconType::Priority2 => "gauge",

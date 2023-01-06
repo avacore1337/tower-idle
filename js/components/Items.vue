@@ -1,7 +1,9 @@
 <template>
   <div class="spreader">
     <div class="i-section items-main">
-      <div class="i-title">Items</div>
+      <div class="around-flex">
+        <my-icon :icon="icons['Backpack']" class="i-title"> Items </my-icon>
+      </div>
       <hr />
       <div class="between-flex">
         <div class="i-name i-header">Item</div>
