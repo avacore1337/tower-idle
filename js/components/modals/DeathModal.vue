@@ -9,6 +9,7 @@
   >
     <span class="modal__title">Death!</span>
     <div class="death_content">
+      <div class="row-flex">Mana gained: <FormatNumber :value="mana_gained" /></div>
       <div class="death_skill_wrapper">
         <span class="death_skill_name"> Skill Name </span>
         <span class="death_skill_value"> Current</span>
@@ -28,6 +29,7 @@ import { ref, watch } from "vue"
 import { computed } from "vue"
 import { useStore } from "@store"
 import AutomationsBox from "@c/modals/AutomationsBox.vue"
+import FormatNumber from "@c/util/FormatNumber.vue"
 
 let store = useStore()
 let wasm = computed(() => store.state.wasm)
@@ -35,6 +37,7 @@ let history = computed(() => store.state.history)
 let floors = computed(() => store.state.world.floors)
 let is_dead = computed(() => store.state.world.status.is_dead)
 let is_open = ref(false)
+let mana_gained = computed(() => history.value.current_round.mana_gained)
 
 let relevant_skills = computed(() =>
   history.value.current_round.skills.filter((skill) => skill.is_visible)

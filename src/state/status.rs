@@ -50,6 +50,7 @@ impl Status {
         let health = base_health / (1.0 + completion_count as f64 / 20.0);
         self.current_health += health;
         self.max_health += health;
+        self.playtime_health_earned += health;
     }
 
     pub fn calculate_starting_health(&mut self, old_status: &Status) {
