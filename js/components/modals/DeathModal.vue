@@ -9,7 +9,12 @@
   >
     <span class="modal__title">Death!</span>
     <div class="death_content">
-      <div class="row-flex">Mana gained: <FormatNumber :value="mana_gained" /></div>
+      <div class="row-flex">
+        <span class="death_skill_name"> Mana gained: </span>
+
+        <FormatNumber class="death_skill_value" :value="mana_gained" />
+      </div>
+      <hr />
       <div class="death_skill_wrapper">
         <span class="death_skill_name"> Skill Name </span>
         <span class="death_skill_value"> Current</span>

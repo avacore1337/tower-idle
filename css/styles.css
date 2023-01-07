@@ -196,3 +196,7 @@ body {
   display: flex;
   justify-content: space-around;
 }
+hr {
+  /* flex-grow: 1; */
+  width: 100%;
+}
