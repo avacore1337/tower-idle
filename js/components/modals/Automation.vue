@@ -53,20 +53,14 @@ let categories: any = computed(() => [
   {
     name: "Collection",
     actions: chosen_floor.value.collections.filter(has_seen),
-    toggle: wasm.value.toggle_priority_collection,
-    favourite_toggle: wasm.value.toggle_favourite_collection,
   },
   {
     name: "Crafting",
     actions: chosen_floor.value.craftings.filter(has_seen),
-    toggle: wasm.value.toggle_priority_crafting,
-    favourite_toggle: wasm.value.toggle_favourite_crafting,
   },
   {
     name: "Exploration",
     actions: chosen_floor.value.explorations.filter(has_seen),
-    toggle: wasm.value.toggle_priority_exploration,
-    favourite_toggle: wasm.value.toggle_favourite_exploration,
   },
 ])
 
@@ -74,20 +68,14 @@ let favourites: any = computed(() => [
   {
     name: "Collection",
     actions: chosen_floor.value.collections.filter(has_seen).filter(is_favourite),
-    toggle: wasm.value.toggle_priority_collection,
-    favourite_toggle: wasm.value.toggle_favourite_collection,
   },
   {
     name: "Crafting",
     actions: chosen_floor.value.craftings.filter(has_seen).filter(is_favourite),
-    toggle: wasm.value.toggle_priority_crafting,
-    favourite_toggle: wasm.value.toggle_favourite_crafting,
   },
   {
     name: "Exploration",
     actions: chosen_floor.value.explorations.filter(has_seen).filter(is_favourite),
-    toggle: wasm.value.toggle_priority_exploration,
-    favourite_toggle: wasm.value.toggle_favourite_exploration,
   },
 ])
 </script>

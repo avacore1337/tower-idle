@@ -11,6 +11,7 @@
     </div>
     <div v-for="exploration in explorations" :key="exploration.name" class="i-box">
       <Action
+category="Exploration"
         :item="exploration"
         :do_action="do_action"
         :toggle_priority="toggle_priority"
@@ -38,7 +39,7 @@ function do_action(name: string, amount: number) {
   wasm.value.prepend_exploration(name, amount)
 }
 function toggle_priority(name: string) {
-  wasm.value.toggle_priority_exploration(name)
+  wasm.value.toggle_priority("Exploration",name)
 }
 function schedule_action(name: string, amount: number) {
   wasm.value.append_exploration(name, amount)

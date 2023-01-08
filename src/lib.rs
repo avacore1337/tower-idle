@@ -3,20 +3,6 @@
 #![allow(non_upper_case_globals)]
 // #![feature(generic_const_exprs)]
 
-use icon::{Icon, IconType};
-use log::{info, Level};
-use std::sync::Mutex;
-use wasm_bindgen::prelude::*;
-
-// #[macro_use]
-// extern crate num_derive;
-
-#[macro_use]
-extern crate lazy_static;
-
-// // #[macro_use]
-// // extern crate serde_big_array;
-
 pub mod action_mapping;
 pub mod action_queue;
 pub mod engine;
@@ -30,15 +16,25 @@ pub mod types;
 pub mod util;
 pub mod wasm_api;
 pub mod world;
+// #[macro_use]
+// extern crate num_derive;
+// // #[macro_use]
+// // extern crate serde_big_array;
+#[macro_use]
+extern crate lazy_static;
 
 use crate::engine::{actionless_update, do_rebirth_internal};
 use crate::types::*;
 use crate::world::item::consume_item;
 use engine::engine_run;
 use game::Game;
+use icon::{Icon, IconType};
+use log::{info, Level};
 use map::generate_map_data;
 use meta::UserSettings;
+use std::sync::Mutex;
 use wasm_api::meta::do_save;
+use wasm_bindgen::prelude::*;
 use world::World;
 
 const TICK_RATE: f64 = 30.0;
@@ -82,70 +78,6 @@ pub fn get_map_for_floor(val: &JsValue) -> JsValue {
 }
 
 #[wasm_bindgen]
-pub fn toggle_priority_exploration(val: &JsValue) {
-    info!("Rust toggle priority exploration");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    got_user_input(game);
-    let t: AllExplors = val.into_serde().unwrap();
-    let x = game.state.get_mut_exploration(t);
-    x.priority = (x.priority + 1) % 5;
-}
-
-#[wasm_bindgen]
-pub fn toggle_priority_collection(val: &JsValue) {
-    info!("Rust toggle priority collection");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    got_user_input(game);
-    let t: AllCollects = val.into_serde().unwrap();
-    let x = game.state.get_mut_collection(t);
-    x.priority = (x.priority + 1) % 5;
-}
-
-#[wasm_bindgen]
-pub fn toggle_priority_crafting(val: &JsValue) {
-    info!("Rust toggle priority crafting");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    got_user_input(game);
-    let t: AllCrafts = val.into_serde().unwrap();
-    let x = game.state.get_mut_crafting(t);
-    x.priority = (x.priority + 1) % 5;
-}
-
-pub fn got_user_input(game: &mut Game) {
-    game.state.status.waiting = false;
-}
-
-#[wasm_bindgen]
-pub fn toggle_favourite_exploration(val: &JsValue) {
-    info!("Rust toggle priority exploration");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    got_user_input(game);
-    let t: AllExplors = val.into_serde().unwrap();
-    let x = game.state.get_mut_exploration(t);
-    x.favourite = !x.favourite;
-}
-
-#[wasm_bindgen]
-pub fn toggle_favourite_collection(val: &JsValue) {
-    info!("Rust toggle priority collection");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    got_user_input(game);
-    let t: AllCollects = val.into_serde().unwrap();
-    let x = game.state.get_mut_collection(t);
-    x.favourite = !x.favourite;
-}
-
-#[wasm_bindgen]
-pub fn toggle_favourite_crafting(val: &JsValue) {
-    info!("Rust toggle priority crafting");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    got_user_input(game);
-    let t: AllCrafts = val.into_serde().unwrap();
-    let x = game.state.get_mut_crafting(t);
-    x.favourite = !x.favourite;
-}
-
-#[wasm_bindgen]
 pub fn use_item(val: &JsValue) {
     info!("Rust enqueue crafting");
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
@@ -172,60 +104,6 @@ pub fn clear_action_count() {
     info!("Rust clear action count");
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
     game.action_queue.clear();
-}
-
-#[wasm_bindgen]
-pub fn prepend_exploration(val: &JsValue, amount: u32) {
-    info!("Rust enqueue exploration");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllExplors = val.into_serde().unwrap();
-    game.action_queue
-        .preppend_action(game.world.get_wexploration(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn prepend_crafting(val: &JsValue, amount: u32) {
-    info!("Rust enqueue crafting");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCrafts = val.into_serde().unwrap();
-    game.action_queue
-        .preppend_action(game.world.get_wcrafting(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn prepend_collection(val: &JsValue, amount: u32) {
-    info!("Rust enqueue collection");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCollects = val.into_serde().unwrap();
-    game.action_queue
-        .preppend_action(game.world.get_wcollection(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn append_exploration(val: &JsValue, amount: u32) {
-    info!("Rust enqueue exploration");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllExplors = val.into_serde().unwrap();
-    game.action_queue
-        .append_action(game.world.get_wexploration(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn append_crafting(val: &JsValue, amount: u32) {
-    info!("Rust enqueue crafting");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCrafts = val.into_serde().unwrap();
-    game.action_queue
-        .append_action(game.world.get_wcrafting(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn append_collection(val: &JsValue, amount: u32) {
-    info!("Rust enqueue exploration");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCollects = val.into_serde().unwrap();
-    game.action_queue
-        .append_action(game.world.get_wcollection(t).to_action_entry(amount));
 }
 
 #[wasm_bindgen]

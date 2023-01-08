@@ -25,17 +25,17 @@
             <my-icon
               v-if="action.is_automatable"
               :icon="get_priority_icon(action)"
-              @click.prevent="category.toggle(action.name)"
+              @click.prevent="wasm.toggle_priority(category.name, action.name)"
             />
             <my-icon
               v-if="action.favourite"
               :icon="icons['Favourite']"
-              @click.prevent="category.favourite_toggle(action.name)"
+              @click.prevent="wasm.toggle_favourite(category.name, action.name)"
             />
             <my-icon
               v-if="!action.favourite"
               :icon="icons['NotFavourite']"
-              @click.prevent="category.favourite_toggle(action.name)"
+              @click.prevent="wasm.toggle_favourite(category.name, action.name)"
             />
             <my-icon v-if="!action.is_automatable" :icon="icons['Lock']" />
             <my-icon v-if="action.round_completions > 0" :icon="icons['Check']" />
@@ -56,7 +56,7 @@ defineProps({
 })
 
 let store = useStore()
-/* let wasm = computed(() => store.state.wasm) */
+let wasm = computed(() => store.state.wasm)
 let icons = computed(() => store.state.world.icons)
 
 function get_priority_icon(item: any): Icon {

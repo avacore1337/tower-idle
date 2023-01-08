@@ -11,6 +11,7 @@
     </div>
     <div v-for="crafting in craftings" :key="crafting.name" class="i-box">
       <Action
+category="Crafting"
         :item="crafting"
         :do_action="do_action"
         :toggle_priority="toggle_priority"
@@ -38,7 +39,7 @@ function do_action(name: string, amount: number) {
   wasm.value.prepend_crafting(name, amount)
 }
 function toggle_priority(name: string) {
-  wasm.value.toggle_priority_crafting(name)
+  wasm.value.toggle_priority("Crafting",name)
 }
 function schedule_action(name: string, amount: number) {
   wasm.value.append_crafting(name, amount)

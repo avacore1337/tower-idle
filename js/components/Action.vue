@@ -19,7 +19,7 @@
         <my-icon
           v-if="item.is_automatable"
           :icon="get_priority_icon(item)"
-          @click.prevent="toggle_priority(item.name)"
+          @click.prevent="wasm.toggle_priority(category,item.name)"
         />
         <my-icon
           :icon="icons['Schedule']"
@@ -43,7 +43,7 @@ import type { Icon } from "@p/index"
 
 let store = useStore()
 let icons = computed(() => store.state.world.icons)
-/* let wasm = computed(() => store.state.wasm) */
+let wasm = computed(() => store.state.wasm)
 
 function get_priority_icon(item: any): Icon {
   return icons.value["Priority" + item.priority.toString()]
@@ -59,8 +59,8 @@ defineProps({
     type: Function,
     required: true,
   },
-  toggle_priority: {
-    type: Function,
+  category: {
+    type: String,
     required: true,
   },
   schedule_action: {

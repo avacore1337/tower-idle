@@ -11,6 +11,7 @@
     </div>
     <div v-for="collection in collections" :key="collection.name" class="i-box">
       <Action
+category="Collection"
         :item="collection"
         :do_action="do_action"
         :toggle_priority="toggle_priority"
@@ -42,7 +43,7 @@ function do_action(name: string, amount: number) {
   wasm.value.prepend_collection(name, amount)
 }
 function toggle_priority(name: string) {
-  wasm.value.toggle_priority_collection(name)
+  wasm.value.toggle_priority("Collection",name)
 }
 function schedule_action(name: string, amount: number) {
   wasm.value.append_collection(name, amount)

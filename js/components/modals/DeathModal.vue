@@ -63,7 +63,6 @@ let categories: any = computed(() => [
         (collection) =>
           collection.has_seen && (!collection.is_automatable || collection.is_newly_automatable)
       ),
-    toggle: wasm.value.toggle_priority_collection,
   },
   {
     name: "Crafting",
@@ -74,7 +73,6 @@ let categories: any = computed(() => [
         (crafting) =>
           crafting.has_seen && (!crafting.is_automatable || crafting.is_newly_automatable)
       ),
-    toggle: wasm.value.toggle_priority_crafting,
   },
   {
     name: "Exploration",
@@ -85,7 +83,6 @@ let categories: any = computed(() => [
         (exploration) =>
           exploration.has_seen && (!exploration.is_automatable || exploration.is_newly_automatable)
       ),
-    toggle: wasm.value.toggle_priority_exploration,
   },
 ])
 </script>
