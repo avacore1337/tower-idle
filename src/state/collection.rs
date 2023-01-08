@@ -18,6 +18,7 @@ pub struct Collection {
     pub priority: u32,
     pub is_automatable: bool,
     pub is_newly_automatable: bool,
+    pub favourite: bool,
 }
 
 impl Collection {
@@ -35,6 +36,7 @@ impl Collection {
             priority: 2,
             is_automatable: false,
             is_newly_automatable: false,
+            favourite: false,
         }
     }
 

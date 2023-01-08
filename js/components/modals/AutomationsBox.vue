@@ -27,6 +27,16 @@
               :icon="get_priority_icon(action)"
               @click.prevent="category.toggle(action.name)"
             />
+            <my-icon
+              v-if="action.favourite"
+              :icon="icons['Favourite']"
+              @click.prevent="category.favourite_toggle(action.name)"
+            />
+            <my-icon
+              v-if="!action.favourite"
+              :icon="icons['NotFavourite']"
+              @click.prevent="category.favourite_toggle(action.name)"
+            />
             <my-icon v-if="!action.is_automatable" :icon="icons['Lock']" />
             <my-icon v-if="action.round_completions > 0" :icon="icons['Check']" />
           </div>

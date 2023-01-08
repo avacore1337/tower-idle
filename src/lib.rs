@@ -116,6 +116,36 @@ pub fn got_user_input(game: &mut Game) {
 }
 
 #[wasm_bindgen]
+pub fn toggle_favourite_exploration(val: &JsValue) {
+    info!("Rust toggle priority exploration");
+    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
+    got_user_input(game);
+    let t: AllExplors = val.into_serde().unwrap();
+    let x = game.state.get_mut_exploration(t);
+    x.favourite = !x.favourite;
+}
+
+#[wasm_bindgen]
+pub fn toggle_favourite_collection(val: &JsValue) {
+    info!("Rust toggle priority collection");
+    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
+    got_user_input(game);
+    let t: AllCollects = val.into_serde().unwrap();
+    let x = game.state.get_mut_collection(t);
+    x.favourite = !x.favourite;
+}
+
+#[wasm_bindgen]
+pub fn toggle_favourite_crafting(val: &JsValue) {
+    info!("Rust toggle priority crafting");
+    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
+    got_user_input(game);
+    let t: AllCrafts = val.into_serde().unwrap();
+    let x = game.state.get_mut_crafting(t);
+    x.favourite = !x.favourite;
+}
+
+#[wasm_bindgen]
 pub fn use_item(val: &JsValue) {
     info!("Rust enqueue crafting");
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();

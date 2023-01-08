@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import MyIcon from "@c/util/MyIcon.vue"
 import MyPopper from "@c/MyPopper.vue"
 import { fas } from "@fortawesome/pro-solid-svg-icons"
+import { far } from "@fortawesome/pro-regular-svg-icons"
 import { Wasm } from "./state"
 import vSelect from "vue-select"
 import "vue-select/dist/vue-select.css"
@@ -12,6 +13,7 @@ import VueFinalModal from "vue-final-modal"
 import { add_custom_icons } from "./import_icons"
 
 library.add(fas)
+library.add(far)
 add_custom_icons()
 
 import { createApp } from "vue"

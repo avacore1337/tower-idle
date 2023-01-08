@@ -19,6 +19,7 @@ pub struct Exploration {
     pub priority: u32,
     pub is_automatable: bool,
     pub is_newly_automatable: bool,
+    pub favourite: bool,
 }
 
 impl Exploration {
@@ -37,6 +38,7 @@ impl Exploration {
             priority: 2,
             is_automatable: false,
             is_newly_automatable: false,
+            favourite: false,
         }
     }
 

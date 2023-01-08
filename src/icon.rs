@@ -37,7 +37,8 @@ pub enum IconType {
     Play,
     Schedule,
     Clock,
-    Health,
+    Favourite,
+    NotFavourite,
     HealthDrain,
     Mana, // Custom
     ManaDrain,
@@ -122,7 +123,8 @@ pub fn get_icon_name(icon: IconType) -> &'static str {
         IconType::Exploration => "map-location-dot",
         IconType::Schedule => "calendar-plus",
         IconType::Clock => "clock",
-        IconType::Health => "hearth",
+        IconType::Favourite => "heart",
+        IconType::NotFavourite => "heart",
         IconType::HealthDrain => "heart-crack",
         IconType::Mana => "big-crystal",
         IconType::ManaDrain => "bolt",
@@ -179,6 +181,7 @@ pub fn get_prefix(icon: IconType) -> &'static str {
     match icon {
         IconType::Crystal => "fac",
         IconType::Mana => "fac",
+        IconType::NotFavourite => "fa-regular",
         _ => "fa-solid",
     }
 }

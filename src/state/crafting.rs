@@ -20,6 +20,7 @@ pub struct Crafting {
     pub priority: u32,
     pub is_automatable: bool,
     pub is_newly_automatable: bool,
+    pub favourite: bool,
 }
 
 impl Crafting {
@@ -39,6 +40,7 @@ impl Crafting {
             priority: 2,
             is_automatable: false,
             is_newly_automatable: false,
+            favourite: true,
         }
     }
 
