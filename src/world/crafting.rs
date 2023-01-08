@@ -310,7 +310,9 @@ pub fn should_be_visible_crafting(crafting_type: AllCrafts, game: &Game) -> bool
     match crafting_type {
         AllCrafts::First(First) => match First {
             F1Crafts::DoorHandle => has_explored(F1Explors::TowerEntrance.into(), game),
-            F1Crafts::Axe => has_explored(F1Explors::SideArea.into(), game),
+            F1Crafts::Axe => {
+                has_explored(F1Explors::SideArea.into(), game) && !has_explored(F1Explors::BlockedDoor.into(), game)
+            }
             F1Crafts::RepairAlchemy => has_explored(F1Explors::Laboratory.into(), game),
             F1Crafts::CrushCrystal => {
                 game.state.get_item(ItemTypes::Crystal).is_visible
@@ -323,7 +325,10 @@ pub fn should_be_visible_crafting(crafting_type: AllCrafts, game: &Game) -> bool
             F2Crafts::PoisonTippedSpear => {
                 has_explored(F2Explors::Laboratory.into(), game) && !has_explored(F2Explors::Intersection.into(), game)
             }
-            F2Crafts::BetterAxe => has_explored(F2Explors::RemoveDebris.into(), game),
+            F2Crafts::BetterAxe => {
+                has_explored(F2Explors::RemoveDebris.into(), game)
+                    && !has_explored(F2Explors::Intersection.into(), game)
+            }
             F2Crafts::Bridge => has_explored(F2Explors::Clearing.into(), game),
             F2Crafts::BuyKey => has_explored(F2Explors::Haggle.into(), game),
         },
