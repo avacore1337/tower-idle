@@ -13,18 +13,18 @@
       <div class="i-actions between-flex">
         <my-icon
           :icon="icons['Play']"
-          @click.prevent.left="do_action(item.name, 100)"
-          @click.prevent.right="do_action(item.name, 1)"
+          @click.prevent.left="wasm.prepend_action(category, item.name, 100)"
+          @click.prevent.right="wasm.prepend_action(category, item.name, 1)"
         />
         <my-icon
           v-if="item.is_automatable"
           :icon="get_priority_icon(item)"
-          @click.prevent="wasm.toggle_priority(category,item.name)"
+          @click.prevent="wasm.toggle_priority(category, item.name)"
         />
         <my-icon
           :icon="icons['Schedule']"
-          @click.prevent.left="schedule_action(item.name, 100)"
-          @click.prevent.right="schedule_action(item.name, 1)"
+          @click.prevent.left="wasm.append_action(category, item.name, 100)"
+          @click.prevent.right="wasm.append_action(category, item.name, 1)"
         />
       </div>
     </div>
@@ -55,16 +55,8 @@ defineProps({
     type: Object,
     required: true,
   },
-  do_action: {
-    type: Function,
-    required: true,
-  },
   category: {
     type: String,
-    required: true,
-  },
-  schedule_action: {
-    type: Function,
     required: true,
   },
 })

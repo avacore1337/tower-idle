@@ -10,19 +10,12 @@
       <div class="i-actions i-header">Action</div>
     </div>
     <div v-for="collection in collections" :key="collection.name" class="i-box">
-      <Action
-category="Collection"
-        :item="collection"
-        :do_action="do_action"
-        :toggle_priority="toggle_priority"
-        :schedule_action="schedule_action"
-      />
+      <Action category="Collection" :item="collection" />
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-/* <h1>Hello – {{ count }}</h1> */
-/* <button @click.prevent="increment">Increment Count</button> */
 import { computed } from "vue"
 import { useStore } from "@store"
 import Action from "@c/Action.vue"
@@ -38,16 +31,7 @@ let collections = computed(() =>
   })
 )
 
-let wasm = computed(() => store.state.wasm)
-function do_action(name: string, amount: number) {
-  wasm.value.prepend_collection(name, amount)
-}
-function toggle_priority(name: string) {
-  wasm.value.toggle_priority("Collection",name)
-}
-function schedule_action(name: string, amount: number) {
-  wasm.value.append_collection(name, amount)
-}
+/* let wasm = computed(() => store.state.wasm) */
 </script>
 
 <style scoped></style>

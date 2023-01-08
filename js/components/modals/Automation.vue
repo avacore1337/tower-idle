@@ -46,6 +46,7 @@ let seen_floors = computed(() => world.value.floors.filter(has_seen))
 let tab = ref(0)
 let chosen_floor_index = ref(store.getters.current_floor.floor_index)
 let chosen_floor = computed(() => store.state.world.floors[chosen_floor_index.value])
+let floors = computed(() => store.state.world.floors)
 
 var data = computed(() => [wasm.value.get_map_for_floor(store.getters.current_floor.name)])
 
@@ -67,15 +68,15 @@ let categories: any = computed(() => [
 let favourites: any = computed(() => [
   {
     name: "Collection",
-    actions: chosen_floor.value.collections.filter(has_seen).filter(is_favourite),
+    actions: store.getters.all_collections.filter(is_favourite),
   },
   {
     name: "Crafting",
-    actions: chosen_floor.value.craftings.filter(has_seen).filter(is_favourite),
+    actions: store.getters.all_craftings.filter(is_favourite),
   },
   {
     name: "Exploration",
-    actions: chosen_floor.value.explorations.filter(has_seen).filter(is_favourite),
+    actions: store.getters.all_explorations.filter(is_favourite),
   },
 ])
 </script>

@@ -9,61 +9,56 @@ pub fn got_user_input(game: &mut Game) {
 }
 
 #[wasm_bindgen]
-pub fn prepend_exploration(val: &JsValue, amount: u32) {
-    info!("Rust enqueue exploration");
+pub fn prepend_action(category: String, val: &JsValue, amount: u32) {
+    info!("prepend action: {}, {:?}", category, val);
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllExplors = val.into_serde().unwrap();
-    game.action_queue
-        .preppend_action(game.world.get_wexploration(t).to_action_entry(amount));
+    match category.as_str() {
+        "Exploration" => {
+            let t: AllExplors = val.into_serde().unwrap();
+            game.action_queue
+                .preppend_action(game.world.get_wexploration(t).to_action_entry(amount));
+        }
+        "Collection" => {
+            let t: AllCollects = val.into_serde().unwrap();
+            game.action_queue
+                .preppend_action(game.world.get_wcollection(t).to_action_entry(amount));
+        }
+        "Crafting" => {
+            let t: AllCrafts = val.into_serde().unwrap();
+            game.action_queue
+                .preppend_action(game.world.get_wcrafting(t).to_action_entry(amount));
+        }
+        _ => panic!("Unknown category: {}", category),
+    }
 }
 
 #[wasm_bindgen]
-pub fn prepend_crafting(val: &JsValue, amount: u32) {
-    info!("Rust enqueue crafting");
+pub fn append_action(category: String, val: &JsValue, amount: u32) {
+    info!("append action: {}, {:?}", category, val);
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCrafts = val.into_serde().unwrap();
-    game.action_queue
-        .preppend_action(game.world.get_wcrafting(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn prepend_collection(val: &JsValue, amount: u32) {
-    info!("Rust enqueue collection");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCollects = val.into_serde().unwrap();
-    game.action_queue
-        .preppend_action(game.world.get_wcollection(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn append_exploration(val: &JsValue, amount: u32) {
-    info!("Rust enqueue exploration");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllExplors = val.into_serde().unwrap();
-    game.action_queue
-        .append_action(game.world.get_wexploration(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn append_crafting(val: &JsValue, amount: u32) {
-    info!("Rust enqueue crafting");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCrafts = val.into_serde().unwrap();
-    game.action_queue
-        .append_action(game.world.get_wcrafting(t).to_action_entry(amount));
-}
-
-#[wasm_bindgen]
-pub fn append_collection(val: &JsValue, amount: u32) {
-    info!("Rust enqueue exploration");
-    let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
-    let t: AllCollects = val.into_serde().unwrap();
-    game.action_queue
-        .append_action(game.world.get_wcollection(t).to_action_entry(amount));
+    match category.as_str() {
+        "Exploration" => {
+            let t: AllExplors = val.into_serde().unwrap();
+            game.action_queue
+                .append_action(game.world.get_wexploration(t).to_action_entry(amount));
+        }
+        "Collection" => {
+            let t: AllCollects = val.into_serde().unwrap();
+            game.action_queue
+                .append_action(game.world.get_wcollection(t).to_action_entry(amount));
+        }
+        "Crafting" => {
+            let t: AllCrafts = val.into_serde().unwrap();
+            game.action_queue
+                .append_action(game.world.get_wcrafting(t).to_action_entry(amount));
+        }
+        _ => panic!("Unknown category: {}", category),
+    }
 }
 
 #[wasm_bindgen]
 pub fn toggle_favourite(category: String, val: &JsValue) {
+    info!("toggle favourite: {}, {:?}", category, val);
     let game: &mut Game = &mut *GLOBAL_DATA.lock().unwrap();
     got_user_input(game);
     match category.as_str() {

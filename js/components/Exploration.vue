@@ -10,13 +10,7 @@
       <div class="i-actions i-header">Action</div>
     </div>
     <div v-for="exploration in explorations" :key="exploration.name" class="i-box">
-      <Action
-category="Exploration"
-        :item="exploration"
-        :do_action="do_action"
-        :toggle_priority="toggle_priority"
-        :schedule_action="schedule_action"
-      />
+      <Action category="Exploration" :item="exploration" />
     </div>
   </div>
 </template>
@@ -34,16 +28,7 @@ let explorations = computed(() =>
   })
 )
 
-let wasm = computed(() => store.state.wasm)
-function do_action(name: string, amount: number) {
-  wasm.value.prepend_exploration(name, amount)
-}
-function toggle_priority(name: string) {
-  wasm.value.toggle_priority("Exploration",name)
-}
-function schedule_action(name: string, amount: number) {
-  wasm.value.append_exploration(name, amount)
-}
+/* let wasm = computed(() => store.state.wasm) */
 </script>
 
 <style scoped></style>

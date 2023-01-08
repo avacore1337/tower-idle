@@ -50,6 +50,15 @@ export const createMyStore = function (wasm: Wasm): Store<State> {
       },
     },
     getters: {
+      all_collections: (state: State) => {
+        return state.world.floors.map((floor) => floor.collections).flat()
+      },
+      all_craftings: (state: State) => {
+        return state.world.floors.map((floor) => floor.craftings).flat()
+      },
+      all_explorations: (state: State) => {
+        return state.world.floors.map((floor) => floor.explorations).flat()
+      },
       collection:
         (state: State) =>
         (collection_type: AllCollects): MCollection | null => {

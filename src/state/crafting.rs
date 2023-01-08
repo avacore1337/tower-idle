@@ -40,7 +40,7 @@ impl Crafting {
             priority: 2,
             is_automatable: false,
             is_newly_automatable: false,
-            favourite: true,
+            favourite: false,
         }
     }
 

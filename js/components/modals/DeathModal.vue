@@ -56,33 +56,23 @@ watch(is_dead, () => {
 let categories: any = computed(() => [
   {
     name: "Collection",
-    actions: floors.value
-      .map((floor) => floor.collections)
-      .flat()
-      .filter(
-        (collection) =>
-          collection.has_seen && (!collection.is_automatable || collection.is_newly_automatable)
-      ),
+    actions: store.getters.all_collections.filter(
+      (collection) =>
+        collection.has_seen && (!collection.is_automatable || collection.is_newly_automatable)
+    ),
   },
   {
     name: "Crafting",
-    actions: floors.value
-      .map((floor) => floor.craftings)
-      .flat()
-      .filter(
-        (crafting) =>
-          crafting.has_seen && (!crafting.is_automatable || crafting.is_newly_automatable)
-      ),
+    actions: store.getters.all_craftings.filter(
+      (crafting) => crafting.has_seen && (!crafting.is_automatable || crafting.is_newly_automatable)
+    ),
   },
   {
     name: "Exploration",
-    actions: floors.value
-      .map((floor) => floor.explorations)
-      .flat()
-      .filter(
-        (exploration) =>
-          exploration.has_seen && (!exploration.is_automatable || exploration.is_newly_automatable)
-      ),
+    actions: store.getters.all_explorations.filter(
+      (exploration) =>
+        exploration.has_seen && (!exploration.is_automatable || exploration.is_newly_automatable)
+    ),
   },
 ])
 </script>

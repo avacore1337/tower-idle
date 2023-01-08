@@ -16,9 +16,6 @@ import Exploration from "@c/Exploration.vue"
 /* let store = useStore() */
 /* let current_floor = computed(() => store.getters.current_floor) */
 /* let wasm = computed(() => store.state.wasm) */
-/* function enqueue_exploration(name: string) { */
-/*   wasm.value.enqueue_exploration(name) */
-/* } */
 </script>
 
 <style scoped>

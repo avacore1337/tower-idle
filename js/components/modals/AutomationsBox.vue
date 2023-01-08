@@ -88,9 +88,9 @@ function get_priority_icon(item: any): Icon {
   width: 2.5rem;
 }
 .action-width {
-  width: 17rem;
+  width: 16.5rem;
 }
 .toggle-box-width {
-  width: 2.5rem;
+  width: 3rem;
 }
 </style>
