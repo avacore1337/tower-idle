@@ -22,11 +22,7 @@ import Action from "@c/Action.vue"
 
 let store = useStore()
 let icons = computed(() => store.state.world.icons)
-let craftings = computed(() =>
-  store.getters.current_floor.craftings.filter((crafting) => {
-    return crafting.is_visible
-  })
-)
+let craftings = computed(() => store.getters.current_floor.craftings.filter((a) => a.is_visible))
 
 /* let wasm = computed(() => store.state.wasm) */
 </script>

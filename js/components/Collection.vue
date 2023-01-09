@@ -23,12 +23,7 @@ import Action from "@c/Action.vue"
 let store = useStore()
 let icons = computed(() => store.state.world.icons)
 let collections = computed(() =>
-  store.getters.current_floor.collections.filter((collection) => {
-    if (collection.max_completions && collection.round_completions >= collection.max_completions) {
-      return false
-    }
-    return collection.is_visible
-  })
+  store.getters.current_floor.collections.filter((a) => a.is_visible)
 )
 
 /* let wasm = computed(() => store.state.wasm) */

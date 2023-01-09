@@ -2,7 +2,7 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import { IconDefinition, IconName, IconPrefix } from "@fortawesome/fontawesome-common-types"
 
 export function add_custom_icons() {
-  let faListOldStyle: IconDefinition = {
+  const faListOldStyle: IconDefinition = {
     prefix: "fac" as IconPrefix,
     iconName: "list-old-style" as IconName,
     icon: [
@@ -16,7 +16,7 @@ export function add_custom_icons() {
 
   library.add(faListOldStyle)
 
-  let crystal: IconDefinition = {
+  const crystal: IconDefinition = {
     prefix: "fac" as IconPrefix,
     iconName: "crystal" as IconName,
     icon: [
@@ -30,7 +30,7 @@ export function add_custom_icons() {
 
   library.add(crystal)
 
-  let big_crystal: IconDefinition = {
+  const big_crystal: IconDefinition = {
     prefix: "fac" as IconPrefix,
     iconName: "big-crystal" as IconName,
     icon: [

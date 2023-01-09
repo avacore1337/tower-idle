@@ -31,6 +31,12 @@ export interface MCollection extends WCollection, Collection {}
 export interface MCrafting extends WCrafting, Crafting {}
 export interface MItem extends WItem, Item {}
 export interface MBoost extends WBoost, Boost {}
+export type MAction = MExploration | MCollection | MCrafting
+
+export interface Category {
+  name: string
+  actions: MAction[]
+}
 /* export interface MMaterial extends WMaterial, Material {} */
 
 /* export interface NewCrafting { */

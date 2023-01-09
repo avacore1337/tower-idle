@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <template>
   <MyModal name="automation" title="Automation">
-    <map v-if="false" :datas="data" />
+    <MyMap v-if="false" :datas="data" />
     <div class="floor_listing_container">
       <button class="section_chooser" @click="tab = 0">Floors</button>
       <button class="section_chooser" @click="tab = 1">Favourites</button>
@@ -30,8 +30,9 @@
 import { ref } from "vue"
 
 import AutomationsBox from "@c/modals/AutomationsBox.vue"
-import Map from "@c/modals/Map.vue"
+import MyMap from "@c/modals/MyMap.vue"
 import MyModal from "./MyModal.vue"
+import { Category } from "@state"
 
 import { computed } from "vue"
 import { useStore } from "@store"
@@ -46,11 +47,10 @@ let seen_floors = computed(() => world.value.floors.filter(has_seen))
 let tab = ref(0)
 let chosen_floor_index = ref(store.getters.current_floor.floor_index)
 let chosen_floor = computed(() => store.state.world.floors[chosen_floor_index.value])
-let floors = computed(() => store.state.world.floors)
 
 var data = computed(() => [wasm.value.get_map_for_floor(store.getters.current_floor.name)])
 
-let categories: any = computed(() => [
+let categories = computed<Category[]>(() => [
   {
     name: "Collection",
     actions: chosen_floor.value.collections.filter(has_seen),
@@ -65,7 +65,7 @@ let categories: any = computed(() => [
   },
 ])
 
-let favourites: any = computed(() => [
+let favourites = computed<Category[]>(() => [
   {
     name: "Collection",
     actions: store.getters.all_collections.filter(is_favourite),

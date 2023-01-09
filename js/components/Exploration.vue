@@ -23,9 +23,7 @@ import Action from "@c/Action.vue"
 let store = useStore()
 let icons = computed(() => store.state.world.icons)
 let explorations = computed(() =>
-  store.getters.current_floor.explorations.filter((exploration) => {
-    return exploration.is_visible
-  })
+  store.getters.current_floor.explorations.filter((a) => a.is_visible)
 )
 
 /* let wasm = computed(() => store.state.wasm) */

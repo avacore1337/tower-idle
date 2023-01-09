@@ -35,16 +35,17 @@ import { computed } from "vue"
 import { useStore } from "@store"
 import AutomationsBox from "@c/modals/AutomationsBox.vue"
 import FormatNumber from "@c/util/FormatNumber.vue"
+import { Category } from "@state"
+import { SkillHistory } from "@p/index"
 
 let store = useStore()
 let wasm = computed(() => store.state.wasm)
 let history = computed(() => store.state.history)
-let floors = computed(() => store.state.world.floors)
 let is_dead = computed(() => store.state.world.status.is_dead)
 let is_open = ref(false)
 let mana_gained = computed(() => history.value.current_round.mana_gained)
 
-let relevant_skills = computed(() =>
+let relevant_skills = computed<SkillHistory[]>(() =>
   history.value.current_round.skills.filter((skill) => skill.is_visible)
 )
 
@@ -53,26 +54,21 @@ watch(is_dead, () => {
   is_open.value = store.state.world.status.is_dead
 })
 
-let categories: any = computed(() => [
+let not_or_newly_automateable = (crafting) =>
+  crafting.has_seen && (!crafting.is_automatable || crafting.is_newly_automatable)
+
+let categories = computed<Category[]>(() => [
   {
     name: "Collection",
-    actions: store.getters.all_collections.filter(
-      (collection) =>
-        collection.has_seen && (!collection.is_automatable || collection.is_newly_automatable)
-    ),
+    actions: store.getters.all_collections.filter(not_or_newly_automateable),
   },
   {
     name: "Crafting",
-    actions: store.getters.all_craftings.filter(
-      (crafting) => crafting.has_seen && (!crafting.is_automatable || crafting.is_newly_automatable)
-    ),
+    actions: store.getters.all_craftings.filter(not_or_newly_automateable),
   },
   {
     name: "Exploration",
-    actions: store.getters.all_explorations.filter(
-      (exploration) =>
-        exploration.has_seen && (!exploration.is_automatable || exploration.is_newly_automatable)
-    ),
+    actions: store.getters.all_explorations.filter(not_or_newly_automateable),
   },
 ])
 </script>

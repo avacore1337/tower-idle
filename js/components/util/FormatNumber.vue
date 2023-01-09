@@ -15,10 +15,10 @@ const props = defineProps({
 })
 // Inspiration:
 // https://github.com/FreddecGames/ngsc/blob/master/frontend/src/components/FormatNumber.vue
-let printableNumber = computed(() => {
+let printableNumber = computed<string>(() => {
   let num = props.value
   if (num === undefined) {
-    return 0
+    return "0"
   }
 
   /* if (num < 0.01) { */

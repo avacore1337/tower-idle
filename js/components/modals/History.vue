@@ -30,7 +30,7 @@ interface DataPoint {
 
 let is_open = ref(false)
 
-let datas = computed(() => {
+let datas = computed<DataPoint[]>(() => {
   let data: DataPoint[] = []
   for (var skill of history.value.current_round.skills) {
     if (skill.talent_delta != 0) {

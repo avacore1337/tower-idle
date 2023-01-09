@@ -12,10 +12,10 @@ const props = defineProps({
   },
 })
 
-let formatedTime = computed(() => {
+let formatedTime = computed<string>(() => {
   let num = Math.floor(props.value)
   if (num === undefined) {
-    return null
+    return ""
   }
   let sec = num % 60
   let min = Math.floor(num / 60) % 60

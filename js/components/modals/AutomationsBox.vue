@@ -48,11 +48,12 @@
 
 <script setup lang="ts">
 import type { Icon } from "@p/index"
-import { computed } from "vue"
+import { PropType, computed } from "vue"
 import { useStore } from "@store"
+import { Category } from "@state"
 
-defineProps({
-  categories: { type: Object, required: true },
+const props = defineProps({
+  categories: { type: Object as PropType<Category[]>, required: true },
 })
 
 let store = useStore()

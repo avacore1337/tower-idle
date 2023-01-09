@@ -23,7 +23,6 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import { useStore } from "@store"
-import { icon_name } from "@util"
 import FormatNumber from "@c/util/FormatNumber.vue"
 import TimeDisplay from "@c/util/TimeDisplay.vue"
 

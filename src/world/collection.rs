@@ -248,7 +248,13 @@ fn has_explored(exploration: AllExplors, game: &Game) -> bool {
 }
 
 pub fn should_be_visible_collection(collection_type: AllCollects, game: &Game) -> bool {
-    // let wcrafting = game.world.get_wcrafting(crafting_type);
+    let wcollection = game.world.get_wcollection(collection_type);
+    let collection = game.state.get_collection(collection_type);
+    if let Some(max_amount) = wcollection.max_completions {
+        if collection.round_completions >= max_amount {
+            return false;
+        }
+    }
     match collection_type {
         AllCollects::First(First) => match First {
             F1Collects::MagicDust => {

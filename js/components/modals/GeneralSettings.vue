@@ -18,10 +18,11 @@ import { ref, watch, computed } from "vue"
 import { useStore } from "@store"
 import MyToggle from "@c/util/MyToggle.vue"
 import MyModal from "./MyModal.vue"
+import { UserSettings } from "@p/index"
 
 let store = useStore()
 let wasm = computed(() => store.state.wasm)
-let settings = ref(store.state.user_settings)
+let settings = ref<UserSettings>(store.state.user_settings)
 
 watch(settings, save_settings, { deep: true })
 
